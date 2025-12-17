@@ -4,6 +4,7 @@
 - Arrows: Change the arrow type/color scheme.
     + If you're looking for arrows that have the center animated in segments like original DDR, check out the CA (Center Animation) variants.
     + CA Alt is an alternate version of CA that slightly changes the way the gradient scrolls on the arrow body to be more accurate to DDR.
+    + Modernized is the Shadow variant with tweaked texture sheets to imitate the ModernizedNote noteskin (made by FirstMaple8).
 - Hold Explosions: Change the explosion type/color that shows up when a hold/roll is registered.
 - Holds: Change the hold type/color.
 - Mine Settings:
