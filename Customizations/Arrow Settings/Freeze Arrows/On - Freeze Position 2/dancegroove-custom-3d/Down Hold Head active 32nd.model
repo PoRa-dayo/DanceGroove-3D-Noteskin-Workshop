@@ -1,0 +1,7 @@
+[Model]
+
+Meshes=arrowmesh.txt
+
+Materials=_Down Hold Head 32nd materials.txt
+
+Bones=arrowmesh.txt
