@@ -1,17 +1,29 @@
 - Arrow Settings:
-    + Arrow Gradient: Change the scrolling direction of the gradient on the frame, the body (middle part), and/or the center of the arrow.
+    + Arrow Gradient: Change the scrolling direction of the gradient on the frame, the body (middle part), the center,
+    and/or the shine (only available in RGB, Vivid and CA Midi variants) of the arrow.
     + Freeze Arrows: Switching this to On will make hold heads and roll heads freeze in one frame and become unanimated.
+    
 - Arrows: Change the arrow type/color scheme.
     + If you're looking for arrows that have the center animated in segments like original DDR, check out the CA (Center Animation) variants.
     + CA Alt is an alternate version of CA that slightly changes the way the gradient scrolls on the arrow body to be more accurate to DDR.
+    + CA Midi is an alternate version of CA that makes the arrow look similar to the Midi noteskin (made by Midiman).
     + Modernized is the Shadow variant with tweaked texture sheets to imitate the ModernizedNote noteskin (made by FirstMaple8).
+    
 - Hold Explosions: Change the explosion type/color that shows up when a hold/roll is registered.
+
 - Holds: Change the hold type/color.
+
 - Mine Settings:
     + Center Animation: Switching this to On and the center of mines will become animated.
     + Explosion: Change the explosion type/color that shows up when a mine is detonated.
     + Rotation: Switching this to Off will make the mine not rotate.
+    
 - Mines: Change the mine type/color.
+
+- Receptor Pulse: Enable or disable the receptors flashing to the beat.
+
 - Receptors: Change the receptor type/color.
+
 - Rolls: Change the roll type/color.
+
 - Tap Explosions: Change the explosion type/color scheme that shows up when a tap note is registered.
