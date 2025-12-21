@@ -15,7 +15,7 @@
 
 - Mine Explosions: Change the explosion type/color that shows up when a mine is detonated.
 
-- Mine Settings:
+- Mine Settings: (will not affect Shock Arrows)
     + Center Animation: Switching this to On and the center of mines will become animated.
     + Rotation: Switching this to Off will make the mine not rotate.
     

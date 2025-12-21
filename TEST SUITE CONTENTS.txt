@@ -1,0 +1,52 @@
+DEFAULT SUITE: 
+- Arrow Settings:
+    + Arrow Gradient: All - Normal Scroll
+    + Freeze Arrows: Off
+- Arrows: ITG
+- Hold Explosions: Minimal White
+- Holds: DDR Hold
+- Mine Explosions: Default
+- Mine Settings:
+    + Center Animation: On
+    + Rotation: On
+- Mines: ITG Red
+- Receptor Pulse: On
+- Receptors: Center Glow Gray
+- Rolls: Note Roll
+- Tap Explosions: Spark ITG
+
+
+MIDI SUITE:
+- Arrow Settings:
+    + Arrow Gradient: Body - Static, Center - Static, Others - Normal Scroll
+    + Freeze Arrows: On - Freeze Position 2
+- Arrows: Note 2 ITG CA Midi
+- Hold Explosions: Spark Ocean
+- Holds: Green
+- Mine Explosions: Default
+- Mine Settings:
+    + Center Animation: On
+    + Rotation: On
+- Mines: X Red
+- Receptor Pulse: Off
+- Receptors: Classic Blue
+- Rolls: Pink
+- Tap Explosions: Minimal ITG
+
+
+RAINBOW SUITE:
+- Arrow Settings:
+    + Arrow Gradient: All - Normal Scroll
+    + Freeze Arrows: On - Freeze Position 1
+- Arrows: Lemma DDRainbow CA
+- Hold Explosions: Minimal RGB
+- Holds: Gold
+- Mine Explosions: Shock Arrow Default
+- Mine Settings:
+    + Center Animation: On
+    + Rotation: On
+- Mines: Shock Arrow Default
+- Receptor Pulse: On
+- Receptors: Classic Fire
+- Rolls: Lemma Roll
+- Tap Explosions: Minimal ITG
