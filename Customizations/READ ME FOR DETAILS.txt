@@ -2,6 +2,7 @@
     + Arrow Gradient: Change the scrolling direction of the gradient on the frame, the body (middle part), the center,
     and/or the shine (only available in RGB, Vivid and CA Midi arrow variants) of the arrow.
     + Freeze Arrows: Switching this to On will make hold heads and roll heads freeze in one frame and become unanimated.
+    (Freeze Position 1 for CA variants will have the arrow's center part be fully unlit, while Freeze Position 2 will have the center part be fully lit)
     
 - Arrows: Change the arrow type/color scheme.
     + If you're looking for arrows that have the center animated in segments like original DDR, check out the CA (Center Animation) variants.

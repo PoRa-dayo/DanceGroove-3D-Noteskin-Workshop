@@ -40,13 +40,73 @@ RAINBOW SUITE:
     + Freeze Arrows: On - Freeze Position 1
 - Arrows: Lemma DDRainbow CA
 - Hold Explosions: Minimal RGB
-- Holds: Gold
+- Holds: Orange
+- Mine Explosions: Shock Arrow RGB
+- Mine Settings:
+    + Center Animation: On
+    + Rotation: On
+- Mines: Shock Arrow RGB
+- Receptor Pulse: On
+- Receptors: Classic Fire
+- Rolls: Lemma Roll
+- Tap Explosions: Minimal ITG
+
+
+UNIVERSE SUITE: 
+- Arrow Settings:
+    + Arrow Gradient: Body - Reverse Scroll, Others - Normal Scroll
+    + Freeze Arrows: On - Freeze Position 2
+- Arrows: DDR Order CA Alt
+- Hold Explosions: Glow Gold
+- Holds: Blue
+- Mine Explosions: Spiral Burst Default
+- Mine Settings:
+    + Center Animation: On
+    + Rotation: On
+- Mines: Note Falspawn
+- Receptor Pulse: On
+- Receptors: Classic Vapor
+- Rolls: Fire
+- Tap Explosions: Spark Nowhere
+
+
+DEV SUITE: 
+- Arrow Settings:
+    + Arrow Gradient: All - Normal Scroll
+    + Freeze Arrows: Off
+- Arrows: Dev Modernized
+- Hold Explosions: Minimal White
+- Holds: White
+- Mine Explosions: Default
+- Mine Settings:
+    + Center Animation: Off
+    + Rotation: On
+- Mines: Note Gray
+- Receptor Pulse: On
+- Receptors: Classic Gray
+- Rolls: Gray Shadow
+- Tap Explosions: Minimal ITG
+
+
+NOTE SUITE: 
+- Arrow Settings:
+    + Arrow Gradient: All - Normal Scroll
+    + Freeze Arrows: On - Freeze Position 1
+- Arrows: Yuisin ITG CA Alt
+- Hold Explosions: Minimal DDR Hold
+- Holds: DDR Hold
 - Mine Explosions: Shock Arrow Default
 - Mine Settings:
     + Center Animation: On
     + Rotation: On
 - Mines: Shock Arrow Default
 - Receptor Pulse: On
-- Receptors: Classic Fire
-- Rolls: Lemma Roll
-- Tap Explosions: Minimal ITG
+- Receptors: Center Glow Note Roll
+- Rolls: Purple Shadow
+- Tap Explosions: Spark ITG
+
+
+CEL SUITE - Lucid Cel Basic
+GOLD SUITE - Bright Gold
+CONTRAST SUITE - ITG Dark
+SHADOW SUITE - ITG Shadow
