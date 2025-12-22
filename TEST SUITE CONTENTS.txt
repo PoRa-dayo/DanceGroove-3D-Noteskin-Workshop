@@ -156,7 +156,7 @@ SHADOW SUITE:
 - Mines: ITG Fire
 - Receptor Pulse: On
 - Receptors: Classic Falspawn
-- Rolls: Halloween Shadow
+- Rolls: Red Shadow
 - Tap Explosions: Minimal ITG
 
 
