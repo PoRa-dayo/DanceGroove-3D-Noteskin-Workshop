@@ -16,6 +16,42 @@ DEFAULT SUITE:
 - Tap Explosions: Spark ITG
 
 
+CEL SUITE: 
+- Arrow Settings:
+    + Arrow Gradient: All - Normal Scroll
+    + Freeze Arrows: Off
+- Arrows: Lucid Cel Basic
+- Hold Explosions: Glow Halloween
+- Holds: Gold
+- Mine Explosions: Spiral Burst Ocean
+- Mine Settings:
+    + Center Animation: On
+    + Rotation: On
+- Mines: ITG Ocean
+- Receptor Pulse: On
+- Receptors: Center Glow Christmas
+- Rolls: Vapor Shadow
+- Tap Explosions: Glow ITG
+
+
+DEV SUITE: 
+- Arrow Settings:
+    + Arrow Gradient: All - Normal Scroll
+    + Freeze Arrows: Off
+- Arrows: Dev Modernized
+- Hold Explosions: Minimal White
+- Holds: White
+- Mine Explosions: Default
+- Mine Settings:
+    + Center Animation: Off
+    + Rotation: On
+- Mines: Note Gray
+- Receptor Pulse: On
+- Receptors: Classic Gray
+- Rolls: Gray Shadow
+- Tap Explosions: Minimal ITG
+
+
 MIDI SUITE:
 - Arrow Settings:
     + Arrow Gradient: Body - Static, Center - Static, Others - Normal Scroll
@@ -32,6 +68,24 @@ MIDI SUITE:
 - Receptors: Classic Blue
 - Rolls: Pink
 - Tap Explosions: Minimal ITG
+
+
+NOTE SUITE: 
+- Arrow Settings:
+    + Arrow Gradient: All - Normal Scroll
+    + Freeze Arrows: On - Freeze Position 1
+- Arrows: Yuisin ITG CA Alt
+- Hold Explosions: Minimal DDR Hold
+- Holds: DDR Hold
+- Mine Explosions: Shock Arrow Default
+- Mine Settings:
+    + Center Animation: On
+    + Rotation: On
+- Mines: Shock Arrow Default
+- Receptor Pulse: On
+- Receptors: Center Glow Note Roll
+- Rolls: Purple Shadow
+- Tap Explosions: Spark ITG
 
 
 RAINBOW SUITE:
@@ -70,43 +124,6 @@ UNIVERSE SUITE:
 - Tap Explosions: Spark Nowhere
 
 
-DEV SUITE: 
-- Arrow Settings:
-    + Arrow Gradient: All - Normal Scroll
-    + Freeze Arrows: Off
-- Arrows: Dev Modernized
-- Hold Explosions: Minimal White
-- Holds: White
-- Mine Explosions: Default
-- Mine Settings:
-    + Center Animation: Off
-    + Rotation: On
-- Mines: Note Gray
-- Receptor Pulse: On
-- Receptors: Classic Gray
-- Rolls: Gray Shadow
-- Tap Explosions: Minimal ITG
-
-
-NOTE SUITE: 
-- Arrow Settings:
-    + Arrow Gradient: All - Normal Scroll
-    + Freeze Arrows: On - Freeze Position 1
-- Arrows: Yuisin ITG CA Alt
-- Hold Explosions: Minimal DDR Hold
-- Holds: DDR Hold
-- Mine Explosions: Shock Arrow Default
-- Mine Settings:
-    + Center Animation: On
-    + Rotation: On
-- Mines: Shock Arrow Default
-- Receptor Pulse: On
-- Receptors: Center Glow Note Roll
-- Rolls: Purple Shadow
-- Tap Explosions: Spark ITG
-
-
-CEL SUITE - Lucid Cel Basic
 GOLD SUITE - Bright Gold
 CONTRAST SUITE - ITG Dark
 SHADOW SUITE - ITG Shadow
