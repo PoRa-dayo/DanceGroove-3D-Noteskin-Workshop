@@ -34,6 +34,24 @@ CEL SUITE:
 - Tap Explosions: Glow ITG
 
 
+CONTRAST SUITE: 
+- Arrow Settings:
+    + Arrow Gradient: All - Normal Scroll
+    + Freeze Arrows: Off
+- Arrows: ITG Dark
+- Hold Explosions: Minimal Orange
+- Holds: Ocean Shadow
+- Mine Explosions: Spiral Burst Fire
+- Mine Settings:
+    + Center Animation: On
+    + Rotation: On
+- Mines: Note Halloween
+- Receptor Pulse: On
+- Receptors: Classic D A N K
+- Rolls: Gold Shadow
+- Tap Explosions: Minimal ITG
+
+
 DEV SUITE: 
 - Arrow Settings:
     + Arrow Gradient: All - Normal Scroll
@@ -50,6 +68,24 @@ DEV SUITE:
 - Receptors: Classic Gray
 - Rolls: Gray Shadow
 - Tap Explosions: Minimal ITG
+
+
+GOLD SUITE: 
+- Arrow Settings:
+    + Arrow Gradient: All - Normal Scroll
+    + Freeze Arrows: Off
+- Arrows: Bright Gold
+- Hold Explosions: Minimal Yellow
+- Holds: Gold
+- Mine Explosions: Realistic Gas Leak
+- Mine Settings:
+    + Center Animation: On
+    + Rotation: On
+- Mines: X Gold
+- Receptor Pulse: On
+- Receptors: Center Glow Gold
+- Rolls: Fire Shadow
+- Tap Explosions: Glow Nowhere
 
 
 MIDI SUITE:
@@ -106,6 +142,24 @@ RAINBOW SUITE:
 - Tap Explosions: Minimal ITG
 
 
+SHADOW SUITE: 
+- Arrow Settings:
+    + Arrow Gradient: All - Normal Scroll
+    + Freeze Arrows: Off
+- Arrows: ITG Shadow
+- Hold Explosions: Minimal Fire
+- Holds: Lemma Roll Shadow
+- Mine Explosions: Default
+- Mine Settings:
+    + Center Animation: On
+    + Rotation: On
+- Mines: ITG Fire
+- Receptor Pulse: On
+- Receptors: Classic Falspawn
+- Rolls: Halloween Shadow
+- Tap Explosions: Minimal ITG
+
+
 UNIVERSE SUITE: 
 - Arrow Settings:
     + Arrow Gradient: Body - Reverse Scroll, Others - Normal Scroll
@@ -122,8 +176,3 @@ UNIVERSE SUITE:
 - Receptors: Classic Vapor
 - Rolls: Fire
 - Tap Explosions: Spark Nowhere
-
-
-GOLD SUITE - Bright Gold
-CONTRAST SUITE - ITG Dark
-SHADOW SUITE - ITG Shadow
