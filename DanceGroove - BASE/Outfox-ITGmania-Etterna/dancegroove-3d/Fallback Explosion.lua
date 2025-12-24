@@ -239,7 +239,9 @@ local t = Def.ActorFrame {
 		InitCommand=function(self)
 			self:blend("BlendMode_Add"):diffusealpha(0)
 		end;
-		HitMineCommand=NOTESKIN:GetMetricA("GhostArrowBright", "HitMineCommand");
+		HitMineCommand=function(self)
+            self:blend("BlendMode_Add"):diffuse(1,1,1,1):zoom(1):rotationz(0):linear(0.2):rotationz(90):linear(0.2):rotationz(180):diffusealpha(0)
+        end;
 	};
 }
 return t;
