@@ -137,7 +137,7 @@ RAINBOW SUITE:
     + Rotation: On
 - Mines: Shock Arrow RGB
 - Receptor Pulse: On
-- Receptors: Classic Fire
+- Receptors: Classic Halloween
 - Rolls: Lemma Roll
 - Tap Explosions: Minimal ITG
 
