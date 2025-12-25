@@ -46,8 +46,10 @@ ret.Redir = function(sButton, sElement)
 	then
 		sElement = "Tap Note";
 	end
-
-	sButton = ret.RedirTable[sButton];
+    
+    if not string.find(sElement, "Mine") then
+        sButton = ret.RedirTable[sButton];
+	end
 
 	return sButton, sElement;
 end
