@@ -99,7 +99,7 @@ MIDI SUITE:
 - Mine Settings:
     + Center Animation: On
     + Rotation: On
-- Mines: X Red
+- Mines: X Falspawn
 - Receptor Pulse: Off
 - Receptors: Classic Blue
 - Rolls: Pink
