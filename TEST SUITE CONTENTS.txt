@@ -100,7 +100,7 @@ MIDI SUITE:
     + Center Animation: On
     + Rotation: On
 - Mines: X Falspawn
-- Receptor Pulse: Off
+- Receptor Pulse: On
 - Receptors: Classic Blue
 - Rolls: Pink
 - Tap Explosions: Minimal ITG

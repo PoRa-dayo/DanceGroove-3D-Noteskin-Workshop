@@ -5,8 +5,13 @@
 local t = Def.ActorFrame {
 	Def.Sprite {
 		Texture=NOTESKIN:GetPath( '_down', 'Go Receptor' );
-		Frame0000=1;
+		Frame0000=0;
 		Delay0000=0.2;
+		Frame0001=1;
+		Delay0001=0.8;
+		InitCommand=function(self)
+			self:effectclock("beat")
+		end;
 		NoneCommand=NOTESKIN:GetMetricA("ReceptorArrow", "NoneCommand");
 		PressCommand=NOTESKIN:GetMetricA("ReceptorArrow", "PressCommand");
 		LiftCommand=NOTESKIN:GetMetricA("ReceptorArrow", "LiftCommand");
