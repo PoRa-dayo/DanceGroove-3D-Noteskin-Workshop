@@ -1,4 +1,4 @@
-<img width="1200" height="500" alt="logo" src="https://github.com/user-attachments/assets/c6fae623-7687-4c68-8e3c-b7f431110de0" />
+<img width="1200" height="500" alt="logo" src="https://github.com/user-attachments/assets/edbcc71e-a640-4fdd-8ad1-ea512ff431b6" />
 
 Trailer video TBA
 
