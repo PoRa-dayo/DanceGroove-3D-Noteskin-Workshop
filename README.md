@@ -13,7 +13,7 @@ Welcome to the "Noteskin Workshop" for "DanceGroove", a DDR style noteskin with 
 # Installation
 - Go into the "DanceGroove - BASE" folder, and select the folder of the game you want to install the noteskin in ("NotITG" or "Outfox-ITGmania-Etterna"). Install the noteskin by copying the "dancegroove-3d" and "dancegroove-custom-3d" folders placed inside the folder of the game you chose. Inside your NotITG/ITGmania/Etterna game folder, paste them in "NoteSkins"/"dance" (if the game is Outfox, it will be in "Appearance"/"NoteSkins"/"dance").
 
-https://github.com/user-attachments/assets/00addb70-4549-42dc-963f-259c7419d81d
+https://github.com/user-attachments/assets/0843cdd7-2607-4b81-a081-bfa920e6ab0f
 
 
 These contain the base default variant of the DanceGroove noteskin, which look like this in-game:
@@ -25,7 +25,8 @@ These contain the base default variant of the DanceGroove noteskin, which look l
 
 - There are also Test Suites in the "DanceGroove - TEST SUITES" folder. Test Suites are variants of the noteskin, that have arrows, holds, rolls, receptors, etc. fully customized beforehand. You can install the Test Suite you want in "NoteSkins"/"dance" (or "Appearance"/"NoteSkins"/"dance" in Outfox) to quickly have a bunch of fully customized variants that you can try out without having to spend time browsing and tinkering. You can check the preview of each Test Suite inside the "Previews" folder.
 
-https://github.com/user-attachments/assets/03ca3623-00e9-4a1f-98e6-d7475b62a741
+
+https://github.com/user-attachments/assets/00fce5f8-25d0-49dd-8daa-b94c867b050d
 
 
 
@@ -51,9 +52,9 @@ https://github.com/user-attachments/assets/e6c9cb00-0f90-4e46-a68a-85fa3d004dd3
 - Copy the "dancegroove-custom-3d" folder.
 - In your NotITG/ITGmania/Etterna game folder, go to "NoteSkins"/"dance" folder (or in the Outfox game folder, go to "Appearance"/"NoteSkins"/"dance" folder), then paste the folder and replace files, then restart the game to apply the variant.
 
-Example video applying the "Plain Bright Simple" arrow variant to "enchantment-custom-3d":
+Example video applying the "DDR Rainbow CA Alt" arrow variant to "dancegroove-custom-3d":
 
-https://github.com/user-attachments/assets/2ba98f4b-a628-43d6-a69b-cba85d5f4ffe
+https://github.com/user-attachments/assets/b303d26f-6c97-42a8-b042-37ea6b412453
 
 
 
