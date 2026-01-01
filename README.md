@@ -1,6 +1,6 @@
 <img width="1200" height="500" alt="logo" src="https://github.com/user-attachments/assets/edbcc71e-a640-4fdd-8ad1-ea512ff431b6" />
 
-Trailer video TBA
+*Check the trailer video [here](https://www.youtube.com/watch?v=xnQtZBazoqs).*
 
 *Check the 2D port for NotITG [here](https://github.com/PoRa-dayo/NotITG-DanceGroove-2D-Noteskin-Workshop).*
 
