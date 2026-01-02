@@ -91,7 +91,7 @@ Tap explosions come in 3 variants per color set: Spark (X shaped like a traditio
 <img width="1761" height="992" alt="ITG (Default)" src="https://github.com/user-attachments/assets/8528a856-7710-457b-9ca4-da3ca6ede5b3" />
 
 Hold explosions can be color customized to many different color options and also come in the same 3 variations as tap explosions (Spark, Glow, and Minimal). By default the skin uses the "White" minimal color option. As an example, here is a preview image of the "Purple" hold explosions.
-<img width="1948" height="623" alt="White" src="https://github.com/user-attachments/assets/8e30fa7a-eaaf-4517-b934-dacbd2bf0e12" />
+<img width="1948" height="623" alt="Purple" src="https://github.com/user-attachments/assets/a28e858c-f3b2-464c-b93e-7fa851b8c669" />
 
 
 ## Holds and Rolls
