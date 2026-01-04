@@ -32,8 +32,8 @@ ret.RedirTable =
 local OldRedir = ret.Redir;
 ret.Redir = function(sButton, sElement)
 	sButton, sElement = OldRedir(sButton, sElement);
-
-	-- Redirects
+    
+    -- Redirects
 	if sElement == "Hold Head Inactive" or
 	   sElement == "Hold Head Active" or
 	   sElement == "Roll Head Inactive" or
@@ -41,24 +41,13 @@ ret.Redir = function(sButton, sElement)
 	then
 		sElement = "Hold Head";
 	end
-    
+
+	-- Redirects
     if sElement == "Tap Fake"
 	then
 		sElement = "Tap Note";
 	end
     
-    if string.find(sElement, "Roll Topcap Active") then
-        sElement = "Hold Topcap Active";
-    end
-    if string.find(sElement, "Roll Bottomcap Active") then
-        sElement = "Hold Bottomcap Active";
-    end
-    if string.find(sElement, "Roll Topcap Inactive") then
-        sElement = "Hold Topcap Inactive";
-    end
-    if string.find(sElement, "Roll Bottomcap Inactive") then
-        sElement = "Hold Bottomcap Inactive";
-    end
     if sButton == "Up" or sButton == "Right" or sButton == "Left" then
         if string.find(sElement, "Hold Body Active") then
             sElement = "Hold BodyDir Active";
@@ -83,6 +72,18 @@ ret.Redir = function(sButton, sElement)
         end
         if string.find(sElement, "Hold Bottomcap Inactive") then
             sElement = "Hold BottomCapDir Inactive";
+        end
+        if string.find(sElement, "Roll Topcap Active") then
+            sElement = "Roll TopCapDir Active";
+        end
+        if string.find(sElement, "Roll Bottomcap Active") then
+            sElement = "Roll BottomCapDir Active";
+        end
+        if string.find(sElement, "Roll Topcap Inactive") then
+            sElement = "Roll TopCapDir Inactive";
+        end
+        if string.find(sElement, "Roll Bottomcap Inactive") then
+            sElement = "Roll BottomCapDir Inactive";
         end
 	end
 

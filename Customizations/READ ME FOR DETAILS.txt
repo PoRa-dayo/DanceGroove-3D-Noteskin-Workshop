@@ -12,7 +12,8 @@
     
 - Hold Explosions: Change the explosion type/color that shows up when a hold/roll is registered.
 
-- Holds: Change the hold type/color.
+- Holds: Change the hold type/color. Recommended to have Holds and Rolls be both ITGstyled or Directional.
+(NOTE: Up and down Default Directional holds will look a bit weird on downscroll in NotITG)
 
 - Mine Explosions: Change the explosion type/color that shows up when a mine is detonated.
 
@@ -24,7 +25,8 @@
 
 - Receptor Pulse: Enable or disable the receptors flashing to the beat.
 
-- Receptors: Change the receptor type/color.
+- Receptors: Change the receptor type/color. Recommended to have Holds and Rolls be both ITGstyled or Directional.
+(NOTE: Up and down Default Directional rolls will look a bit weird on downscroll in NotITG)
 
 - Rolls: Change the roll type/color.
 

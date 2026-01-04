@@ -4,7 +4,7 @@ DEFAULT SUITE:
     + Freeze Arrows: Off
 - Arrows: ITG
 - Hold Explosions: Minimal White
-- Holds: DDR Hold
+- Holds: ITGstyled DDR Hold
 - Mine Explosions: Default
 - Mine Settings:
     + Center Animation: On
@@ -12,7 +12,7 @@ DEFAULT SUITE:
 - Mines: ITG Red
 - Receptor Pulse: On
 - Receptors: Center Glow Gray
-- Rolls: Note Roll
+- Rolls: ITGstyled Note Roll
 - Tap Explosions: Spark ITG
 
 
@@ -22,7 +22,7 @@ CEL SUITE:
     + Freeze Arrows: Off
 - Arrows: Lucid Cel Basic
 - Hold Explosions: Glow Halloween
-- Holds: Gold
+- Holds: ITGstyled Gold
 - Mine Explosions: Spiral Burst Ocean
 - Mine Settings:
     + Center Animation: On
@@ -30,7 +30,7 @@ CEL SUITE:
 - Mines: ITG Ocean
 - Receptor Pulse: On
 - Receptors: Center Glow Christmas
-- Rolls: Vapor Shadow
+- Rolls: ITGstyled Vapor Shadow
 - Tap Explosions: Glow ITG
 
 
@@ -40,7 +40,7 @@ CONTRAST SUITE:
     + Freeze Arrows: Off
 - Arrows: ITG Dark
 - Hold Explosions: Minimal Orange
-- Holds: Ocean Shadow
+- Holds: ITGstyled Ocean Shadow
 - Mine Explosions: Spiral Burst Fire
 - Mine Settings:
     + Center Animation: On
@@ -48,7 +48,7 @@ CONTRAST SUITE:
 - Mines: Note Halloween
 - Receptor Pulse: On
 - Receptors: Classic D A N K
-- Rolls: Gold Shadow
+- Rolls: ITGstyled Gold Shadow
 - Tap Explosions: Minimal ITG
 
 
@@ -58,7 +58,7 @@ DEV SUITE:
     + Freeze Arrows: Off
 - Arrows: Dev Modernized
 - Hold Explosions: Minimal White
-- Holds: White
+- Holds: ITGstyled White
 - Mine Explosions: Default
 - Mine Settings:
     + Center Animation: Off
@@ -66,7 +66,7 @@ DEV SUITE:
 - Mines: Note Gray
 - Receptor Pulse: On
 - Receptors: Classic Gray
-- Rolls: Gray Shadow
+- Rolls: ITGstyled Gray Shadow
 - Tap Explosions: Minimal ITG
 
 
@@ -76,7 +76,7 @@ GOLD SUITE:
     + Freeze Arrows: Off
 - Arrows: Bright Gold
 - Hold Explosions: Minimal Yellow
-- Holds: Gold
+- Holds: ITGstyled Gold
 - Mine Explosions: Realistic Gas Leak
 - Mine Settings:
     + Center Animation: On
@@ -84,7 +84,7 @@ GOLD SUITE:
 - Mines: X Gold
 - Receptor Pulse: On
 - Receptors: Center Glow Gold
-- Rolls: Fire Shadow
+- Rolls: ITGstyled Fire Shadow
 - Tap Explosions: Glow Nowhere
 
 
@@ -94,7 +94,7 @@ MIDI SUITE:
     + Freeze Arrows: On - Freeze Position 2
 - Arrows: Note 2 ITG CA Midi
 - Hold Explosions: Spark Ocean
-- Holds: Green
+- Holds: ITGstyled Green
 - Mine Explosions: Default
 - Mine Settings:
     + Center Animation: On
@@ -102,7 +102,7 @@ MIDI SUITE:
 - Mines: X Falspawn
 - Receptor Pulse: On
 - Receptors: Classic Blue
-- Rolls: Pink
+- Rolls: ITGstyled Pink
 - Tap Explosions: Minimal ITG
 
 
@@ -112,7 +112,7 @@ NOTE SUITE:
     + Freeze Arrows: On - Freeze Position 1
 - Arrows: Yuisin ITG CA Alt
 - Hold Explosions: Minimal DDR Hold
-- Holds: DDR Hold
+- Holds: ITGstyled DDR Hold
 - Mine Explosions: Shock Arrow Default
 - Mine Settings:
     + Center Animation: On
@@ -120,7 +120,7 @@ NOTE SUITE:
 - Mines: Shock Arrow Default
 - Receptor Pulse: On
 - Receptors: Center Glow Note Roll
-- Rolls: Purple Shadow
+- Rolls: ITGstyled Purple Shadow
 - Tap Explosions: Spark ITG
 
 
@@ -130,7 +130,7 @@ RAINBOW SUITE:
     + Freeze Arrows: On - Freeze Position 1
 - Arrows: Lemma DDRainbow CA
 - Hold Explosions: Minimal RGB
-- Holds: Orange
+- Holds: ITGstyled Orange
 - Mine Explosions: Shock Arrow RGB
 - Mine Settings:
     + Center Animation: On
@@ -138,7 +138,7 @@ RAINBOW SUITE:
 - Mines: Shock Arrow RGB
 - Receptor Pulse: On
 - Receptors: Classic Halloween
-- Rolls: Lemma Roll
+- Rolls: ITGstyled Lemma Roll
 - Tap Explosions: Minimal ITG
 
 
@@ -148,7 +148,7 @@ SHADOW SUITE:
     + Freeze Arrows: Off
 - Arrows: ITG Shadow
 - Hold Explosions: Minimal Fire
-- Holds: Lemma Roll Shadow
+- Holds: ITGstyled Lemma Roll Shadow
 - Mine Explosions: Default
 - Mine Settings:
     + Center Animation: On
@@ -156,7 +156,7 @@ SHADOW SUITE:
 - Mines: ITG Fire
 - Receptor Pulse: On
 - Receptors: Classic Falspawn
-- Rolls: Red Shadow
+- Rolls: ITGstyled Red Shadow
 - Tap Explosions: Minimal ITG
 
 
@@ -166,7 +166,7 @@ UNIVERSE SUITE:
     + Freeze Arrows: On - Freeze Position 2
 - Arrows: DDR Order CA Alt
 - Hold Explosions: Glow Gold
-- Holds: Blue
+- Holds: ITGstyled Blue
 - Mine Explosions: Spiral Burst Default
 - Mine Settings:
     + Center Animation: On
@@ -174,5 +174,5 @@ UNIVERSE SUITE:
 - Mines: Note Falspawn
 - Receptor Pulse: On
 - Receptors: Classic Vapor
-- Rolls: Fire
+- Rolls: ITGstyled Fire
 - Tap Explosions: Spark Nowhere
