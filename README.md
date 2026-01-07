@@ -64,7 +64,7 @@ https://github.com/user-attachments/assets/b303d26f-6c97-42a8-b042-37ea6b412453
 
 
 # Overview
-In case it's not obvious enough from the name, this noteskin is not meant to accurately recreate the original DDR noteskins. DanceGroove arrow's shape is more similar to SM3.9's default stock noteskin, directional holds are not present, and shock arrows do not connect with eachother nor will they shock your entire playfield. Most DanceGroove arrow variants also use a double gradient, so they will appear more animated even compared to ITG stock noteskins. However, there are several variants that accurately recreate the color scheme and gradient from original DDR noteskins (the "CA Alt" variants), if you want those instead.
+In case it's not obvious enough from the name, this noteskin is not meant to accurately recreate the original DDR noteskins. DanceGroove arrow's shape is more similar to SM3.9's default stock noteskin, holds also look slightly different, and shock arrows do not connect with eachother nor will they shock your entire playfield. Most DanceGroove arrow variants also use a double gradient, so they will appear more animated even compared to ITG stock noteskins. However, there are several variants that accurately recreate the color scheme and gradient from original DDR noteskins (the "CA Alt" variants), if you want those instead.
 
 Compared to HURG's original DanceGroove workshop, this one will also offer extra options and variants, such as more arrow variants, shock arrows, mine explosions, etc.
 
@@ -95,7 +95,7 @@ Hold explosions can be color customized to many different color options and also
 
 
 ## Holds and Rolls
-Holds and rolls (active and inactive) can be color customized. Every color option has a standard and shadow version. Feel free to mix and match different options! By default the noteskin uses the "white" color options for both holds and rolls. As an example, here are preview images for the "Vapor" normal and shadow color options.
+Holds and rolls (active and inactive) can be color customized. For ITG-styled holds and rolls, every color option has a standard and shadow version. There are also directional holds and rolls to recreate the DDR feel, with each color option having a standard and an MGD-styled version. Feel free to mix and match different options! By default the noteskin uses the "white" color options for both holds and rolls. As an example, here are preview images for the "Vapor" normal and shadow color options.
 <img width="512" height="852" alt="Vapor" src="https://github.com/user-attachments/assets/9ac4f3e1-1be6-4614-9009-56b886f5fb54" />
 <img width="512" height="852" alt="Vapor Shadow" src="https://github.com/user-attachments/assets/1dcfd0c0-1e67-42d4-84ef-0ac1222ce698" />
 
