@@ -95,7 +95,7 @@ Hold explosions can be color customized to many different color options and also
 
 
 ## Holds and Rolls
-Holds and rolls (active and inactive) can be color customized. For ITG-styled holds and rolls, every color option has a standard and shadow version. There are also directional holds and rolls to recreate the DDR feel, with each color option having a standard and an MGD-styled version. Feel free to mix and match different options! By default the noteskin uses the "white" color options for both holds and rolls. As an example, here are preview images for the "Vapor" normal and shadow color options.
+Holds and rolls (active and inactive) can be color customized. For ITG-styled holds and rolls, every color option has a standard and shadow version. There are also directional holds and rolls to recreate the DDR feel, with each color option having a standard and an MGD-styled version. Feel free to mix and match different options! By default the noteskin uses the "white" color options for both holds and rolls. As an example, here are preview images for the ITG-styled "Vapor" normal and shadow color options.
 <img width="512" height="852" alt="Vapor" src="https://github.com/user-attachments/assets/9ac4f3e1-1be6-4614-9009-56b886f5fb54" />
 <img width="512" height="852" alt="Vapor Shadow" src="https://github.com/user-attachments/assets/1dcfd0c0-1e67-42d4-84ef-0ac1222ce698" />
 
