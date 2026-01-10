@@ -105,7 +105,7 @@ Mines can be color customized, and for every color option there are five differe
 <img width="2048" height="824" alt="Red" src="https://github.com/user-attachments/assets/cf258491-6256-4cab-9e08-d8a0ee586a54" />
 ![Red](https://github.com/user-attachments/assets/f5f66c17-5ee0-4f47-ba16-a832ed8d7311)
 
-For the ITG, Note, X, and Dot variants, these mines will rotate in-game, and unlike the original DanceGroove workshop, the center part of these mines are animated by default. You can customize the mine animations in the "Mine Settings" folder. (Does not apply to Shock Arrows)
+These mines will rotate in-game by default. For the ITG, Note, X, and Dot variants, unlike the original DanceGroove workshop, the center part of these mines are animated by default. You can customize the mine animations in the "Mine Settings" folder.
 
 ## Receptors
 Receptors can be color customized and there are two variations of receptors, Classic (similar to normal DDR noteskins with a hollow center and frame that blinks on beat) and Center Glow (Center area of arrow glow blinks on beat). By default the noteskin uses the "Gray Center Glow" option.
