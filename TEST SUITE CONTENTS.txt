@@ -116,7 +116,7 @@ NOTE SUITE:
 - Mine Explosions: Shock Arrow Default
 - Mine Settings:
     + Center Animation: On
-    + Rotation: On
+    + Rotation: Off
 - Mines: Shock Arrow Default
 - Receptor Pulse: On
 - Receptors: Center Glow Note Roll
@@ -134,7 +134,7 @@ RAINBOW SUITE:
 - Mine Explosions: Shock Arrow RGB
 - Mine Settings:
     + Center Animation: On
-    + Rotation: On
+    + Rotation: Off
 - Mines: Shock Arrow RGB
 - Receptor Pulse: On
 - Receptors: Classic Halloween
