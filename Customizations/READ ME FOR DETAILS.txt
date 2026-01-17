@@ -25,9 +25,9 @@
 
 - Receptor Pulse: Enable or disable the receptors flashing to the beat.
 
-- Receptors: Change the receptor type/color. Recommended to have Holds and Rolls be both ITGstyled or Directional.
-(NOTE: Up and down Default Directional rolls will look a bit weird on downscroll in NotITG)
+- Receptors: Change the receptor type/color.
 
-- Rolls: Change the roll type/color.
+- Rolls: Change the roll type/color. Recommended to have Holds and Rolls be both ITGstyled or Directional.
+(NOTE: Up and down Default Directional rolls will look a bit weird on downscroll in NotITG)
 
 - Tap Explosions: Change the explosion type/color scheme that shows up when a tap note is registered.
