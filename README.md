@@ -64,7 +64,7 @@ https://github.com/user-attachments/assets/b303d26f-6c97-42a8-b042-37ea6b412453
 
 
 # Overview
-In case it's not obvious enough from the name, this noteskin is not meant to accurately recreate the original DDR noteskins. DanceGroove arrow's shape is more similar to SM3.9's default stock noteskin, holds also look slightly different, and shock arrows do not connect with eachother nor will they shock your entire playfield. Most DanceGroove arrow variants also use a double gradient, so they will appear more animated even compared to ITG stock noteskins. However, there are several variants that accurately recreate the color scheme and gradient from original DDR noteskins (the "CA Alt" variants), if you want those instead.
+In case it's not obvious enough from the name, this noteskin is not meant to accurately recreate the original DDR noteskins (Go check out Peter's or Schneider's DDR noteskins if you want something close to the original). DanceGroove arrow's shape is more similar to SM3.9's default stock noteskin, holds also look slightly different, and shock arrows do not connect with eachother nor will they shock your entire playfield. Most DanceGroove arrow variants also use a double gradient, so they will appear more animated even compared to ITG stock noteskins. However, there are several variants that accurately recreate the color scheme and gradient from original DDR noteskins (the "CA Alt" variants), if you want those instead.
 
 Compared to HURG's original DanceGroove workshop, this one will also offer extra options and variants, such as more arrow variants, shock arrows, mine explosions, etc.
 
