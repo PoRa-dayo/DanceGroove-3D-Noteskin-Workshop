@@ -132,7 +132,7 @@ Due to engine limitations, the Directional holds and rolls still have some weird
 
 In NotITG, if you use the standard Directional holds/rolls, up and down holds/rolls will show the incorrect direction on their bodies when Reverse mod is applied, but MGD-styled Directional ones should work completely fine.
 
-In SM5 forks, both the bottom and top hold/roll caps will always show up, which will become visible in a lot of modfiles, and they can get quite distracting, but for non-mods play it should work completely fine.
+In SM5 forks, with directional holds/rolls, both the bottom and top hold/roll caps will always show up, which will become visible in a lot of modfiles, and they can get quite distracting, but for non-mods play it should work completely fine.
 
 ## Special Thanks
 - [HURG](https://github.com/HURG-IIDX) - creator of the DanceGroove noteskin workshop and a bunch of other noteskins
