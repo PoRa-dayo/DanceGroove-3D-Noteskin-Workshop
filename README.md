@@ -19,20 +19,23 @@ Welcome to the "Noteskin Workshop" for "DanceGroove", a DDR style noteskin with 
 <img width="685" height="100" alt="msedge_y7o1Gsljpu" src="https://github.com/user-attachments/assets/f33f58fb-af8a-4a48-85c7-f24d8de8200d" />
 - Go into the "DanceGroove - BASE" folder, and select the folder of the game you want to install the noteskin in ("NotITG" or "Outfox-ITGmania-Etterna"). Install the noteskin by copying the "dancegroove-3d" and "dancegroove-custom-3d" folders placed inside the folder of the game you chose. Inside your NotITG/ITGmania/Etterna game folder, paste them in "NoteSkins"/"dance" (if the game is Outfox, it will be in "Appearance"/"NoteSkins"/"dance").
 
-https://github.com/user-attachments/assets/0843cdd7-2607-4b81-a081-bfa920e6ab0f
+
+https://github.com/user-attachments/assets/aa5c8d2e-9302-42d2-9891-2bdc3aa701ef
+
 
 
 These contain the base default variant of the DanceGroove noteskin, which look like this in-game:
 
 
-![Default Suite](https://github.com/user-attachments/assets/385c58ff-5170-4e35-b9bd-03e9a16d69bd)
+<img width="600" height="450" alt="Default Suite" src="https://github.com/user-attachments/assets/385c58ff-5170-4e35-b9bd-03e9a16d69bd" />
 
 
 
 - There are also Test Suites in the "DanceGroove - TEST SUITES" folder. Test Suites are variants of the noteskin, that have arrows, holds, rolls, receptors, etc. fully customized beforehand. You can install the Test Suite you want in "NoteSkins"/"dance" (or "Appearance"/"NoteSkins"/"dance" in Outfox) to quickly have a bunch of fully customized variants that you can try out without having to spend time browsing and tinkering. You can check the preview of each Test Suite inside the "Previews" folder.
 
 
-https://github.com/user-attachments/assets/00fce5f8-25d0-49dd-8daa-b94c867b050d
+
+https://github.com/user-attachments/assets/7a18b9e2-cf9b-40bc-b1f3-c9a28309be96
 
 
 
