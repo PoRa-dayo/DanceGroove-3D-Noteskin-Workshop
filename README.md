@@ -77,9 +77,15 @@ Compared to HURG's original DanceGroove workshop, this one will also offer extra
 
 ## Arrows
 There are a lot of arrow customization options (over 140!) including color sets for ITG, DDR note, vivid, RGB, and other color schemes seen on other various noteskins, which includes several variations for each color set. By default the skin uses the "ITG" arrow set.
-In the "Previews" folder, there are animated GIF previews of every arrow option, except the unanimated ones which are presented with static PNG images. Every arrow preview image has labels for each quantization. As an example, here is the preview image for the default ITG arrow set.
+In the "Previews" folder, there are animated GIF previews of every arrow option, except the unanimated ones which are presented with static PNG images. Every arrow preview image has labels for each quantization. As an example, here is the preview image for some arrow sets (These variants are: ITG CA, Lemma DDRainbow Shadow, Lucid Cel Basic, Note 2 CA Midi, Lucid Dark, Dev Modernized)
 
-![ITG](https://github.com/user-attachments/assets/7aa7bb46-cc4f-4ed5-b0c3-8da67bb227b6)
+<img width="600" alt="ITG CA" src="https://github.com/user-attachments/assets/065b8568-9a4e-4f9d-bb89-3243d07a387e" />
+<img width="600" alt="Lemma DDRainbow Shadow" src="https://github.com/user-attachments/assets/6e3ed5eb-5629-484d-87ea-cf622b04439f" />
+<img width="600" alt="Lucid Cel Basic" src="https://github.com/user-attachments/assets/5b4cb3f8-77a7-41cf-a909-3b819587ad90" />
+<img width="600" alt="Note 2 CA Midi" src="https://github.com/user-attachments/assets/69ca92ec-aa62-4222-aeb9-83e905487567" />
+<img width="600" alt="Lucid Dark" src="https://github.com/user-attachments/assets/e1737cfa-cee6-48d1-a56c-eccfde03f294" />
+<img width="600" alt="Dev Modernized" src="https://github.com/user-attachments/assets/3a18acd1-4a08-486c-9e9b-090091040afe" />
+
 
 There are also options to change the scrolling direction of the arrow gradient, or make hold and roll heads be unanimated, inside the "Arrow Settings" folder.
 
