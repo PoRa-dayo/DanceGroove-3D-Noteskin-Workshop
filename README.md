@@ -101,21 +101,24 @@ Both hold and tap explosions can be customized.
 
 Tap explosions can be customized to different match different judgement color sets. By default it comes with the "ITG" Spark color set, but there are options for things like Rainbowmatic and Waterfall and a few others. There is also an "all white" option if you prefer your tap explosions to be color neutral.
 Tap explosions come in 3 variants per color set: Spark (X shaped like a traditional DDR tap explosion), Glow (more like the ITG Cel/Metal noteskin tap explosions) and Minimal (similar to glow but with a smaller area). As an exmple, here is a preview example for the "ITG" tap explosion set (by default the skin uses the ITG Spark set):
-<img width="1761" height="992" alt="ITG (Default)" src="https://github.com/user-attachments/assets/8528a856-7710-457b-9ca4-da3ca6ede5b3" />
+
+<img width="512" alt="ITG (Default)" src="https://github.com/user-attachments/assets/8528a856-7710-457b-9ca4-da3ca6ede5b3" />
 
 Hold explosions can be color customized to many different color options and also come in the same 3 variations as tap explosions (Spark, Glow, and Minimal). By default the skin uses the "White" minimal color option. As an example, here is a preview image of the "Purple" hold explosions.
-<img width="1948" height="623" alt="Purple" src="https://github.com/user-attachments/assets/a28e858c-f3b2-464c-b93e-7fa851b8c669" />
+
+<img width="512" alt="Purple" src="https://github.com/user-attachments/assets/a28e858c-f3b2-464c-b93e-7fa851b8c669" />
 
 
 ## Holds and Rolls
 Holds and rolls (active and inactive) can be color customized. For ITG-styled holds and rolls, every color option has a standard and shadow version. There are also directional holds and rolls to recreate the DDR feel, with each color option having a standard and an MGD-styled version. Feel free to mix and match different options! By default the noteskin uses the "white" color options for both holds and rolls. As an example, here are preview images for the ITG-styled "Vapor" normal and shadow color options.
-<img width="512" height="852" alt="Vapor" src="https://github.com/user-attachments/assets/9ac4f3e1-1be6-4614-9009-56b886f5fb54" />
-<img width="512" height="852" alt="Vapor Shadow" src="https://github.com/user-attachments/assets/1dcfd0c0-1e67-42d4-84ef-0ac1222ce698" />
+
+<img width="256" alt="Vapor" src="https://github.com/user-attachments/assets/9ac4f3e1-1be6-4614-9009-56b886f5fb54" />
+<img width="256" alt="Vapor Shadow" src="https://github.com/user-attachments/assets/1dcfd0c0-1e67-42d4-84ef-0ac1222ce698" />
 
 
 ## Mines
 Mines can be color customized, and for every color option there are five different types of mine graphic styles: ITG, Note, X, Dot, and Shock Arrow. By default the skin uses the ITG "Red" color option. As an example, here is the preview image for the "Red" mine options.
-<img width="2048" height="824" alt="Red" src="https://github.com/user-attachments/assets/cf258491-6256-4cab-9e08-d8a0ee586a54" />
+<img width="512" alt="Red" src="https://github.com/user-attachments/assets/cf258491-6256-4cab-9e08-d8a0ee586a54" />
 ![Red](https://github.com/user-attachments/assets/f5f66c17-5ee0-4f47-ba16-a832ed8d7311)
 
 These mines will rotate in-game by default. For the ITG, Note, X, and Dot variants, unlike the original DanceGroove workshop, the center part of these mines are animated by default. You can customize the mine animations in the "Mine Settings" folder.
