@@ -118,6 +118,7 @@ Holds and rolls (active and inactive) can be color customized. For ITG-styled ho
 
 ## Mines
 Mines can be color customized, and for every color option there are five different types of mine graphic styles: ITG, Note, X, Dot, and Shock Arrow. By default the skin uses the ITG "Red" color option. As an example, here is the preview image for the "Red" mine options.
+
 <img width="512" alt="Red" src="https://github.com/user-attachments/assets/cf258491-6256-4cab-9e08-d8a0ee586a54" />
 ![Red](https://github.com/user-attachments/assets/f5f66c17-5ee0-4f47-ba16-a832ed8d7311)
 
