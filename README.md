@@ -10,6 +10,8 @@
 
 A fully 3D modeled port to NotITG/ITGmania/Outfox/Etterna of [HURG's DanceGroove Noteskin Workshop](https://github.com/HURG-IIDX/Noteskin-Workshop-DanceGroove).
 
+"Noteskin Workshops" are fully customizable "build your own" noteskin suites. With some simple copy-pasting, a workshop allows you to apply any arrow/hold/roll/mine/etc. variant that you desire to its base noteskin.
+
 Welcome to the "Noteskin Workshop" for "DanceGroove", a DDR style noteskin with a modern ITG feature set, made to be compatible with ITG modcharting. Just about every aspect of the noteskin can be customized. All customization options have preview images that can be browsed in the "previews" folder. Please note that preview images are almost entirely presented at a lower resolution than the actual assets of the noteskin to help reduce download size.
 
 *(Scroll down to the Overview section for an overview of the features in this workshop, as well as some previews)*
