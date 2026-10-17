@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk,messagebox,filedialog
 from PIL import Image, ImageTk, ImageSequence
-import os, re, shutil, queue, threading, json, copy, sys
+import os, re, shutil, queue, threading, json, copy, sys, tempfile
 from pathlib import Path
 from itertools import combinations
 
@@ -341,10 +341,19 @@ PREVIEW_CATEGORY_MAP = {
     "Holds": "Holds+Rolls",
     "Rolls": "Holds+Rolls",
     "Holds/Directional": "Holds+Rolls/Directional Holds",
-    "Rolls/Directional": "Holds+Rolls/Directional Rolls"
+    "Rolls/Directional": "Holds+Rolls/Directional Rolls",
+    "Arrow Settings - Arrow Gradient/NotITG/Frame": "Arrow Settings - Arrow Gradient",
+    "Arrow Settings - Arrow Gradient/NotITG/Body": "Arrow Settings - Arrow Gradient",
+    "Arrow Settings - Arrow Gradient/NotITG/Center": "Arrow Settings - Arrow Gradient",
+    "Arrow Settings - Arrow Gradient/NotITG/Shine (RGB-Vivid-CAMidi-Only)": "Arrow Settings - Arrow Gradient"
 }
 #left, top, right, bottom
 PREVIEW_CROP_MAP = {
+    "Arrow Settings - Arrow Gradient/NotITG/Frame": (10, 0, 573, 0),
+    "Arrow Settings - Arrow Gradient/NotITG/Body": (212, 0, 378, 0),
+    "Arrow Settings - Arrow Gradient/NotITG/Center": (407, 0, 212, 0),
+    "Arrow Settings - Arrow Gradient/NotITG/Shine (RGB-Vivid-CAMidi-Only)": (572, 0, 10, 0),
+
     "Holds/ITGstyled": (0, 85, 256, 0),
     "Rolls/ITGstyled": (256, 85, 0, 0),
     "Holds/Directional": (0, 85, 0, 0),
@@ -367,7 +376,12 @@ PREVIEW_MAX_HEIGHT = {
     "Hold Explosions": 200,
     "Receptors": 170,
     "Mine Explosions": 170,
-    "Mines": 150
+    "Mines": 150,
+    "Arrow Settings - Arrow Gradient/NotITG/Frame": 200,
+    "Arrow Settings - Arrow Gradient/NotITG/Body": 200,
+    "Arrow Settings - Arrow Gradient/NotITG/Center": 200,
+    "Arrow Settings - Arrow Gradient/NotITG/Shine (RGB-Vivid-CAMidi-Only)": 200,
+    "Arrow Settings - Freeze Arrows": 200,
 }
 PREVIEW_FILENAME_REMOVE_WORDS = []
 TREAT_CHILDREN_AS_CATEGORIES = [
@@ -375,23 +389,30 @@ TREAT_CHILDREN_AS_CATEGORIES = [
     "Mine Settings"
 ]
 # remove (default) from this
-PATH_HAS_ARBITRARY_IMAGE_NAMES = []
+PATH_HAS_ARBITRARY_IMAGE_NAMES = [
+    "Arrow Settings - Arrow Gradient/NotITG"
+]
 # remove (default) from this
 PATH_CHECK_NON_EXACT = [
 ]
 PLAYER_SELECTIONS = {}
 PAGE2_DROPDOWNS = {}
+FOLDER_ORDER_EXCEPTIONS = {
+    "Holds": ["Rolls"],
+    "Hold Explosions": ["Tap Explosions"],
+}
 CATEGORY_DESCRIPTIONS = {
     "Arrow Settings - Arrow Gradient/NotITG/Body": f"Change the scrolling direction of the gradient (or make it not scroll) on the body (middle part) of the arrow.",
     "Arrow Settings - Arrow Gradient/NotITG/Center": f"Change the scrolling direction of the gradient (or make it not scroll) on the center of the arrow.",
     "Arrow Settings - Arrow Gradient/NotITG/Frame": f"Change the scrolling direction of the gradient (or make it not scroll) on the frame of the arrow.",
-    "Arrow Settings - Arrow Gradient/NotITG/Shine (RGB-Vivid-CAMidi-Only)": f"Change the scrolling direction of the gradient (or make it not scroll) on the shine of the arrow (only available in RGB, Vivid and CA Midi arrow variants).",
+    "Arrow Settings - Arrow Gradient/NotITG/Shine (RGB-Vivid-CAMidi-Only)": f"Change the scrolling direction of the gradient (or make it not scroll) on the shine of the arrow. The shine is an overlay on top of the original arrow (only available in RGB, Vivid and CA Midi arrow variants).",
     "Arrow Settings - Freeze Arrows": f"Switching this to On will make hold heads and roll heads freeze in one frame and become unanimated. (Freeze Position 1 for CA variants will have the arrow's center part be fully unlit, while Freeze Position 2 will have the center part be fully lit)",
     "Mine Settings/Center Animation": f"Switching this to Off and the center of mines will become unanimated. (will not affect Shock Arrows)",
     "Mine Settings/Rotation": f"Switching this to Off will make the mine not rotate.",
     "Holds": f"Recommended to have Holds and Rolls be both ITGstyled or Directional.\n(NOTE: Up and down Default Directional holds will look a bit weird on downscroll in NotITG)",
     "Rolls": f"Recommended to have Holds and Rolls be both ITGstyled or Directional.\n(NOTE: Up and down Default Directional rolls will look a bit weird on downscroll in NotITG)",
     "Receptor Pulse": f"Enable or disable the receptors flashing to the beat.",
+    "Tap Explosions": f"In order: (Blue) Fantastic, White Fantastic, Excellent, Great, Decent, Way Off.\nNOTE: The White Fantastic tap explosion is only used in advanced timing windows in Outfox or ITGmania."
 }
 
 
@@ -399,6 +420,42 @@ def clean_folder_name(name):
     # Remove "(default)" at the end, ignoring capitalization
     return re.sub(r"\s*\(default\)$", "", name, flags=re.IGNORECASE)
 
+def sort_folders(folders):
+    folders.sort(key=lambda folder: folder["name"].casefold())
+
+    # Move each exception directly after its designated folder
+    for anchor, followers in FOLDER_ORDER_EXCEPTIONS.items():
+        anchor_index = next(
+            (i for i, folder in enumerate(folders)
+             if folder["name"].casefold() == anchor.casefold()),
+            None
+        )
+
+        if anchor_index is None:
+            continue
+
+        for follower in followers:
+            follower_index = next(
+                (i for i, folder in enumerate(folders)
+                 if folder["name"].casefold() == follower.casefold()),
+                None
+            )
+
+            if follower_index is None:
+                continue
+
+            item = folders.pop(follower_index)
+
+            # Find the anchor again, since removing an item shifts indices
+            anchor_index = next(
+                i for i, folder in enumerate(folders)
+                if folder["name"].casefold() == anchor.casefold()
+            )
+
+            folders.insert(anchor_index + 1, item)
+
+            # Keep multiple followers in their specified order
+            anchor = follower
 
 def scan_folders(folder_path):
     result = []
@@ -628,7 +685,7 @@ def create_customization_dropdowns(customizations_path, previews_path):
                     "path": entry.path
                 })
 
-        folders.sort(key=lambda folder: folder["name"].lower())
+        sort_folders(folders)
 
     except OSError as error:
         messagebox.showerror("Error", str(error))
@@ -663,29 +720,29 @@ def create_customization_dropdowns(customizations_path, previews_path):
         # If a category in TREAT_CHILDREN_AS_CATEGORIES has its first child as NotITG, then it won't be included in the displayed name
         tk.Label(
             category_frame,
-            text=category_name.replace("/", " - ").replace(" - NotITG", ""),
+            text=category_name.replace("/", " - ").replace(" - NotITG", "").replace(" (RGB-Vivid-CAMidi-Only)", " (RGB, Vivid, CA Midi variants only)"),
             font=("Arial", 11, "bold")
         ).pack(anchor="w")
 
-        labil = tk.Label(
-            category_frame,
-            text="",
-            justify="left",
-            anchor="w",
-            wraplength=560
-        )
-        labil.pack(fill="x", expand=True)
-
         if category_name in CATEGORY_DESCRIPTIONS:
+            labil = tk.Label(
+                category_frame,
+                text="",
+                justify="left",
+                anchor="w",
+                wraplength=560
+            )
+            labil.pack(fill="x", expand=True)
+
             labil.config(text=CATEGORY_DESCRIPTIONS[category_name])
 
-        def update_wrap(event, label=labil):
-            width = label.winfo_width()
-            if width > 1:
-                label.config(wraplength=width)
+            def update_wrap(event, label=labil):
+                width = label.winfo_width()
+                if width > 1:
+                    label.config(wraplength=width)
 
 
-        labil.bind("<Configure>", update_wrap)
+            labil.bind("<Configure>", update_wrap)
 
         # Dedicated dropdown container
         dropdown_frame = tk.Frame(category_frame)
@@ -1356,6 +1413,71 @@ def save_named_selection(name):
 
     return True
 
+def copy_non_directional_textures(working_mclb, category):
+    parts = [
+        ("Body", "Active"),
+        ("Body", "Inactive"),
+        ("BottomCap", "Active"),
+        ("BottomCap", "Inactive"),
+        ("TopCap", "Active"),
+        ("TopCap", "Inactive"),
+    ]
+
+    directions = ("Left", "Right", "Up")
+
+    category = category.removesuffix("s")
+
+    for part, state in parts:
+        source_name = f"Down {category} {part} {state}".casefold()
+        source_path = None
+
+        # Find the source Down PNG
+        for root, _, files in os.walk(working_mclb):
+            for filename in files:
+                if (
+                    filename.lower().endswith(".png")
+                    and source_name in filename.casefold()
+                ):
+                    source_path = os.path.join(root, filename)
+                    break
+
+            if source_path:
+                break
+
+        if not source_path:
+            print(f"Source image not found: {source_name}")
+            continue
+
+        # Find the other directional images
+        for direction in directions:
+            target_name = (
+                f"{direction} {category} {part}Dir {state}".casefold()
+            )
+            
+            target_path = None
+
+            for root, _, files in os.walk(working_mclb):
+                for filename in files:
+                    if (
+                        filename.lower().endswith(".png")
+                        and target_name in filename.casefold()
+                    ):
+                        target_path = os.path.join(root, filename)
+                        break
+
+                if target_path:
+                    break
+
+            # If no matching image exists, skip it
+            if not target_path:
+                print(f"No image that matches {target_name} exists")
+                continue
+
+            # Replace the target image's content with the source image
+            if os.path.normcase(source_path) != os.path.normcase(target_path):
+                shutil.copy2(source_path, target_path)
+                print(f"Replaced: {target_path}")
+
 def install_skin(CURRENT_PATH):
     if not noteskin_name_entry.get().strip():
         messagebox.showwarning(
@@ -1369,6 +1491,17 @@ def install_skin(CURRENT_PATH):
     )
     if not answer:
         return
+
+    directionTypeMismatch = False
+    if PLAYER_SELECTIONS["Holds"][0] != PLAYER_SELECTIONS["Rolls"][0]:
+        directionTypeMismatch = True
+        answer2 = messagebox.askyesno(
+            "Confirm Settings",
+            f"Hold type ({PLAYER_SELECTIONS["Holds"][0]}) and Roll type ({PLAYER_SELECTIONS["Rolls"][0]}) mismatch.\nTHE PROGRAM will perform some extra actions, but your noteskin may still have some visual caveats.\nContinue?"
+        )
+        if not answer2:
+            return
+    
     folder_name = "dancegroove-custom-3d"
     base_path = os.path.join(
         root_path,
@@ -1393,35 +1526,56 @@ def install_skin(CURRENT_PATH):
         messagebox.showerror("Error", "Failed to find dancegroove-custom-3d inside DanceGroove - BASE.")
         return False
 
-    for category, selections in PLAYER_SELECTIONS.items():
-        source_customizations = find_custom_3d_folder(
-            category,
-            selections,
-            selected_game,
-            folder_name
-        )
+    # any item with [0] as Directional (e.g. PLAYER_SELECTIONS["Holds"][0] = "Directional") will be checked last.
+    sorted_selections = sorted(
+        PLAYER_SELECTIONS.items(),
+        key=lambda item: item[1][0] == "Directional"
+    )
 
-        print('The source:', source_customizations)
+    # Create a temporary working copy of source_mclb
+    with tempfile.TemporaryDirectory() as temp_dir:
+        working_mclb = os.path.join(temp_dir, "dancegroove-custom-3d")
 
-        if source_customizations:
-            shutil.copytree(
-                source_customizations,
-                source_mclb,
-                dirs_exist_ok=True
+        # Copy the original into the working folder
+        shutil.copytree(source_mclb, working_mclb)
+
+        # Merge customizations into the working copy
+        for category, selections in sorted_selections:
+            source_customizations = find_custom_3d_folder(
+                category,
+                selections,
+                selected_game,
+                folder_name
             )
 
-    # Destination: CURRENT_PATH/dancegroove-custom-3d or whatever name the player input
-    destination = os.path.join(CURRENT_PATH, noteskin_name_entry.get())
+            print('The source:', source_customizations)
 
-    # Remove existing destination
-    if os.path.exists(destination):
-        if os.path.isdir(destination) and not os.path.islink(destination):
-            shutil.rmtree(destination)
-        else:
-            os.remove(destination)
+            if source_customizations:
+                shutil.copytree(
+                    source_customizations,
+                    working_mclb,
+                    dirs_exist_ok=True
+                )
 
-    # Copy mclb and all its contents
-    shutil.copytree(source_mclb, destination)
+            if (
+                directionTypeMismatch and
+                PLAYER_SELECTIONS[category] and
+                PLAYER_SELECTIONS[category][0] == "ITGstyled (default)"
+            ):
+                copy_non_directional_textures(working_mclb, category)
+
+        # Destination: CURRENT_PATH/dancegroove-custom-3d or user's chosen name
+        destination = os.path.join(CURRENT_PATH, noteskin_name_entry.get())
+
+        # Remove existing destination
+        if os.path.exists(destination):
+            if os.path.isdir(destination) and not os.path.islink(destination):
+                shutil.rmtree(destination)
+            else:
+                os.remove(destination)
+
+        # Copy the finished working copy to destination
+        shutil.copytree(working_mclb, destination)
 
     if selected_game == "Outfox-ITGmania-Etterna":
         messagebox.showinfo("Notice", "Noteskin installed. Reload theme and textures (F2 or F3+F6+6) in your GAME to apply the changes.")
@@ -1649,312 +1803,187 @@ def create_suite(type, overrides=None):
     return suite
 
 BASE_SUITE_CONFIG = {
-    'Celable': create_suite('Celable'),
-    'Metalable': create_suite('Metalable'),
-    'Vividable': create_suite('Vividable')
+    'Default Suite': {
+            "Arrow Settings - Arrow Gradient/NotITG/Body": ["Normal Scroll (default)"],
+            "Arrow Settings - Arrow Gradient/NotITG/Center": ["Normal Scroll (default)"],
+            "Arrow Settings - Arrow Gradient/NotITG/Frame": ["Normal Scroll (default)"],
+            "Arrow Settings - Arrow Gradient/NotITG/Shine (RGB-Vivid-CAMidi-Only)": ["Normal Scroll (default)"],
+            "Arrow Settings - Freeze Arrows": ["Off (default)"],
+            "Arrows": ["ITG (default)"],
+            "Hold Explosions": ["Minimal (default)","White (default)"],
+            "Holds": ["ITGstyled (default)","DDR Hold (default)"],
+            "Mine Explosions": ["Default (default)"],
+            "Mine Settings/Center Animation": ["On (default)"],
+            "Mine Settings/Rotation": ["On (default)"],
+            "Mines": ["ITG (Default)","Red (default)"],
+            "Receptor Pulse": ["On (default)"],
+            "Receptors": ["Center Glow (default)","Gray (default)"],
+            "Rolls": ["ITGstyled (default)","Note Roll (default)"],
+            "Tap Explosions": ["Spark (default)","ITG (default)"]
+        }
 }
 TEST_SUITE_CONFIG = {
-    'Celable - Abridged Suite': {
-            'Arrow Center Animation': ['On - Default (default)'],
-            'Arrows': ['Celable (default)', 'Excel+ Basic'],
-            'Hold Explosions': ['Celable', 'Minimal (default)', 'White'],
-            'Holds': ['Celable', 'ITG (default)', 'DDR Hold'],
-            'Lifts': ['Celable - Hollowed Spectrum (default)'],
-            'Mine Settings/Center Animation': ['On (default)'],
-            'Mine Settings/Rotation': ['On - Beta'],
-            'Mine Settings/Size': ['Normal (default)'],
-            'Mines': ['Beta', 'Default', ''],
-            'Receptor Animation': ['On - Default (default)'],
-            'Receptors': ['Celable - Frame', 'Gray'],
-            'Rolls': ['ITG (default)', 'Note Roll'],
-            'Tap Explosions': ['Celable', 'Glow (default)', 'ITG (default)']
-        },
-    'Celable - Bejeweled Suite': {
-            'Arrow Center Animation': ['On - Default (default)'],
-            'Arrows': ['Celable - Ionic', 'Gemstones Ionic Vibrant'],
-            'Hold Explosions': ['Celable', 'Minimal (default)', 'Fire'],
-            'Holds': ['Celable', 'VIP', 'Steel Ionic'],
-            'Lifts': ['Celable - Hollowed Spectrum (default)'],
-            'Mine Settings/Center Animation': ['On (default)'],
-            'Mine Settings/Rotation': ['On - ITG (default)'],
-            'Mine Settings/Size': ['Normal (default)'],
-            'Mines': ['VIP', 'Unquantized', 'Default'],
-            'Receptor Animation': ['On - Default (default)'],
-            'Receptors': ['Celable - Ionic', 'Default (Steel)'],
-            'Rolls': ['VIP', 'Default (Heliodor)'],
-            'Tap Explosions': ['Celable', 'Spark', 'ITG']
-        },
-    'Celable - Bejeweled 2 Suite': {
-            'Arrow Center Animation': ['On - Default (default)'],
-            'Arrows': ['Celable - Ionic', 'Gemstones 2 Ionic Vibrant'],
-            'Hold Explosions': ['Celable', 'Minimal (default)', 'RGB'],
-            'Holds': ['Celable', 'VIP', 'Gold Ionic'],
-            'Lifts': ['Celable - Hollowed Spectrum (default)'],
-            'Mine Settings/Center Animation': ['On (default)'],
-            'Mine Settings/Rotation': ['On - ITG (default)'],
-            'Mine Settings/Size': ['Normal (default)'],
-            'Mines': ['VIP', 'Unquantized', 'Steel'],
-            'Receptor Animation': ['On - Default (default)'],
-            'Receptors': ['Celable - Ionic', 'Copper'],
-            'Rolls': ['VIP', 'Ice'],
-            'Tap Explosions': ['Celable', 'Spark', 'ITG']
-        },
-    'Celable - Highlighted Suite': {
-            'Arrow Center Animation': ['On - Default (default)'],
-            'Arrows': ['Celable (default)', 'Lemma DDRainbow Vibrant Animated'],
-            'Hold Explosions': ['Celable', 'Minimal (default)', 'Vapor'],
-            'Holds': ['Celable', 'ITG (default)', 'Ocean'],
-            'Lifts': ['Celable - Hollowed Spectrum (default)'],
-            'Mine Settings/Center Animation': ['On (default)'],
-            'Mine Settings/Rotation': ['On - ITG (default)'],
-            'Mine Settings/Size': ['Normal (default)'],
-            'Mines': ['ArrowVortex', 'Default P1', ''],
-            'Receptor Animation': ['On - Default (default)'],
-            'Receptors': ['Celable - Traditional (default)', 'D A N K'],
-            'Rolls': ['ITG (default)', 'Fire Shadow'],
-            'Tap Explosions': ['Celable', 'Spark', 'ITG']
-        },
-    'Celable - Inversed Suite': {
-            'Arrow Center Animation': ['On - Default (default)'],
-            'Arrows': ['Celable (default)', 'Lucid Addition'],
-            'Hold Explosions': ['Celable', 'Minimal (default)', 'Falspawn'],
-            'Holds': ['Celable', 'ITG (default)', 'Halloween Shadow'],
-            'Lifts': ['Celable - Hollowed Spectrum (default)'],
-            'Mine Settings/Center Animation': ['On (default)'],
-            'Mine Settings/Rotation': ['On - ITG (default)'],
-            'Mine Settings/Size': ['Mini'],
-            'Mines': ['ITG (default)', 'Unquantized (default)', 'lateM'],
-            'Receptor Animation': ['On - Default (default)'],
-            'Receptors': ['Celable - Traditional (default)', 'Purple'],
-            'Rolls': ['ITG (default)', 'DDR Hold Shadow'],
-            'Tap Explosions': ['Celable', 'Glow (default)', 'ITG (default)']
-        },
-    'Celable - Kindled Suite': {
-            'Arrow Center Animation': ['On - Default (default)'],
-            'Arrows': ['Celable (default)','ITG TD Vibrant'],
-            'Hold Explosions': ['Celable','Glow','Gold'],
-            'Holds': ['Celable','ITG (default)','Fire'],
-            'Lifts': ['Celable - Hollowed Spectrum (default)'],
-            'Mine Settings/Center Animation': ['On (default)'],
-            'Mine Settings/Rotation': ['On - ITG (default)'],
-            'Mine Settings/Size': ['Mini'],
-            'Mines': ['ITG (default)','Unquantized (default)','Falspawn Vibrant'],
-            'Receptor Animation': ['On - Default (default)'],
-            'Receptors': ['Celable - Traditional (default)','Halloween'],
-            'Rolls': ['ITG (default)','Note Roll Shadow'],
-            'Tap Explosions': ['Celable','Spark','ITG']
-        },
-    'Celable - Outlined Suite': {
-            "Arrow Center Animation": ["On - Default (default)"],
-            "Arrows": ["Celable - Plain","Dev Toon"],
-            "Hold Explosions": ["Celable","Minimal (default)","Red"],
-            "Holds": ["Celable","Toon","Default"],
-            "Lifts": ["Celable - Hollowed Spectrum (default)"],
+    'Cel Suite': {
+            "Arrow Settings - Arrow Gradient/NotITG/Body": ["Normal Scroll (default)"],
+            "Arrow Settings - Arrow Gradient/NotITG/Center": ["Normal Scroll (default)"],
+            "Arrow Settings - Arrow Gradient/NotITG/Frame": ["Normal Scroll (default)"],
+            "Arrow Settings - Arrow Gradient/NotITG/Shine (RGB-Vivid-CAMidi-Only)": ["Normal Scroll (default)"],
+            "Arrow Settings - Freeze Arrows": ["Off (default)"],
+            "Arrows": ["Lucid Cel Basic"],
+            "Hold Explosions": ["Glow","Halloween"],
+            "Holds": ["ITGstyled (default)","Gold"],
+            "Mine Explosions": ["Spiral Burst","Ocean"],
             "Mine Settings/Center Animation": ["On (default)"],
-            "Mine Settings/Rotation": ["On - ITG (default)"],
-            "Mine Settings/Size": ["Normal (default)"],
-            "Mines": ["Toon","Purple"],
-            "Receptor Animation": ["On - Default (default)"],
-            "Receptors": ["Celable - Frame","Blue"],
-            "Rolls": ["Toon","Default"],
-            "Tap Explosions": ["Celable","Glow (default)","ITG (default)"]
+            "Mine Settings/Rotation": ["On (default)"],
+            "Mines": ["ITG (Default)","Ocean"],
+            "Receptor Pulse": ["On (default)"],
+            "Receptors": ["Center Glow (default)","Christmas"],
+            "Rolls": ["ITGstyled (default)","Vapor Shadow"],
+            "Tap Explosions": ["Glow","ITG"]
         },
-    'Celable - Polished Suite': {
-            "Arrow Center Animation": ["On - Default (default)"],
-            "Arrows": ["Celable (default)","Gemstones -REFLECTIVE- Vibrant"],
-            "Hold Explosions": ["Celable","Glow","Fire"],
-            "Holds": ["Celable","ITG (default)","Vapor"],
-            "Lifts": ["Celable - Hollowed Spectrum (default)"],
+    'Contrast Suite': {
+            "Arrow Settings - Arrow Gradient/NotITG/Body": ["Normal Scroll (default)"],
+            "Arrow Settings - Arrow Gradient/NotITG/Center": ["Normal Scroll (default)"],
+            "Arrow Settings - Arrow Gradient/NotITG/Frame": ["Normal Scroll (default)"],
+            "Arrow Settings - Arrow Gradient/NotITG/Shine (RGB-Vivid-CAMidi-Only)": ["Normal Scroll (default)"],
+            "Arrow Settings - Freeze Arrows": ["Off (default)"],
+            "Arrows": ["ITG Dark"],
+            "Hold Explosions": ["Minimal (default)","Orange"],
+            "Holds": ["ITGstyled (default)","Ocean Shadow"],
+            "Mine Explosions": ["Spiral Burst","Fire"],
             "Mine Settings/Center Animation": ["On (default)"],
-            "Mine Settings/Rotation": ["On - ITG (default)"],
-            "Mine Settings/Size": ["Mini"],
-            "Mines": ["ITG (default)","Unquantized (default)","Orange -REFLECTIVE- Vibrant"],
-            "Receptor Animation": ["On - Default (default)"],
-            "Receptors": ["Celable - Frame","Christmas"],
-            "Rolls": ["ITG (default)","Falspawn Shadow"],
-            "Tap Explosions": ["Celable","Spark","ITG"]
+            "Mine Settings/Rotation": ["On (default)"],
+            "Mines": ["Note","Halloween"],
+            "Receptor Pulse": ["On (default)"],
+            "Receptors": ["Classic","D A N K"],
+            "Rolls": ["ITGstyled (default)","Gold Shadow"],
+            "Tap Explosions": ["Minimal","ITG"]
         },
-    'Celable - Reinforced Suite': {
-            "Arrow Center Animation": ["On - Default (default)"],
-            "Arrows": ["Celable (default)","Bright Encore"],
-            "Hold Explosions": ["Celable","Minimal (default)","Ocean"],
-            "Holds": ["Celable","ITG (default)","Default Shadow"],
-            "Lifts": ["Celable - Hollowed Spectrum (default)"],
+    'Dev Suite': {
+            "Arrow Settings - Arrow Gradient/NotITG/Body": ["Normal Scroll (default)"],
+            "Arrow Settings - Arrow Gradient/NotITG/Center": ["Normal Scroll (default)"],
+            "Arrow Settings - Arrow Gradient/NotITG/Frame": ["Normal Scroll (default)"],
+            "Arrow Settings - Arrow Gradient/NotITG/Shine (RGB-Vivid-CAMidi-Only)": ["Normal Scroll (default)"],
+            "Arrow Settings - Freeze Arrows": ["Off (default)"],
+            "Arrows": ["Dev Modernized"],
+            "Hold Explosions": ["Minimal (default)","White (default)"],
+            "Holds": ["ITGstyled (default)","White"],
+            "Mine Explosions": ["Default (default)"],
+            "Mine Settings/Center Animation": ["Off"],
+            "Mine Settings/Rotation": ["On (default)"],
+            "Mines": ["Note","Gray"],
+            "Receptor Pulse": ["On (default)"],
+            "Receptors": ["Classic","Gray"],
+            "Rolls": ["ITGstyled (default)","Gray Shadow"],
+            "Tap Explosions": ["Minimal","ITG"]
+        },
+    'Gold Suite': {
+            "Arrow Settings - Arrow Gradient/NotITG/Body": ["Normal Scroll (default)"],
+            "Arrow Settings - Arrow Gradient/NotITG/Center": ["Normal Scroll (default)"],
+            "Arrow Settings - Arrow Gradient/NotITG/Frame": ["Normal Scroll (default)"],
+            "Arrow Settings - Arrow Gradient/NotITG/Shine (RGB-Vivid-CAMidi-Only)": ["Normal Scroll (default)"],
+            "Arrow Settings - Freeze Arrows": ["Off (default)"],
+            "Arrows": ["Bright Gold"],
+            "Hold Explosions": ["Minimal (default)","Yellow"],
+            "Holds": ["ITGstyled (default)","Gold"],
+            "Mine Explosions": ["Realistic","Gas Leak"],
             "Mine Settings/Center Animation": ["On (default)"],
-            "Mine Settings/Rotation": ["On - ITG (default)"],
-            "Mine Settings/Size": ["Normal (default)"],
-            "Mines": ["ITG (default)","Unquantized (default)","Default P1 -REFLECTIVE-"],
-            "Receptor Animation": ["On - Default (default)"],
-            "Receptors": ["Celable - Traditional (default)","White"],
-            "Rolls": ["ITG (default)","Default Encore"],
-            "Tap Explosions": ["Celable","Glow (default)","ITG (default)"]
+            "Mine Settings/Rotation": ["On (default)"],
+            "Mines": ["X","Gold"],
+            "Receptor Pulse": ["On (default)"],
+            "Receptors": ["Center Glow (default)","Gold"],
+            "Rolls": ["ITGstyled (default)","Fire Shadow"],
+            "Tap Explosions": ["Glow","Nowhere"]
         },
-    'Celable - Sellable Suite': {
-            "Arrow Center Animation": ["On - Default (default)"],
-            "Arrows": ["Celable (default)","Bright -FLATSHINE- Gold"],
-            "Hold Explosions": ["Celable","Glow","Yellow"],
-            "Holds": ["Celable","ITG (default)","Gold Shadow"],
-            "Lifts": ["Celable - Hollowed Spectrum (default)"],
+    'Midi Suite': {
+            "Arrow Settings - Arrow Gradient/NotITG/Body": ["Static"],
+            "Arrow Settings - Arrow Gradient/NotITG/Center": ["Static"],
+            "Arrow Settings - Arrow Gradient/NotITG/Frame": ["Normal Scroll (default)"],
+            "Arrow Settings - Arrow Gradient/NotITG/Shine (RGB-Vivid-CAMidi-Only)": ["Normal Scroll (default)"],
+            "Arrow Settings - Freeze Arrows": ["On - Freeze Position 2"],
+            "Arrows": ["Note 2 ITG CA Midi"],
+            "Hold Explosions": ["Spark","Ocean"],
+            "Holds": ["ITGstyled (default)","Green"],
+            "Mine Explosions": ["Default (default)"],
             "Mine Settings/Center Animation": ["On (default)"],
-            "Mine Settings/Rotation": ["On - ITG (default)"],
-            "Mine Settings/Size": ["Mini"],
-            "Mines": ["ITG (default)","Unquantized (default)","Default P1 -FLATSHINE- Gold"],
-            "Receptor Animation": ["On - Default (default)"],
-            "Receptors": ["Celable - Traditional (default)","Gold"],
-            "Rolls": ["ITG (default)","Gold"],
-            "Tap Explosions": ["Celable","Spark","Rainbowmatic"]
+            "Mine Settings/Rotation": ["On (default)"],
+            "Mines": ["X","Falspawn"],
+            "Receptor Pulse": ["On (default)"],
+            "Receptors": ["Classic","Blue"],
+            "Rolls": ["ITGstyled (default)","Pink"],
+            "Tap Explosions": ["Minimal","ITG"]
         },
-
-
-    'Metalable - Abridged Suite': {
-            'Arrow Center Animation': ['On - Default (default)'],
-            'Arrows': ['Metalable (default)', 'Exmetal+ Basic'],
-            'Hold Explosions': ['Metalable', 'Minimal (default)', 'White'],
-            'Holds': ['Metalable', 'ITG (default)', 'DDR Hold'],
-            'Lifts': ['Metalable - Hollowed Spectrum (default)'],
-            'Mine Settings/Center Animation': ['On (default)'],
-            'Mine Settings/Rotation': ['On - Beta'],
-            'Mine Settings/Size': ['Normal (default)'],
-            'Mines': ['Beta', 'Default', ''],
-            'Receptor Animation': ['On - Default (default)'],
-            'Receptors': ['Metalable - Frame', 'Gray'],
-            'Rolls': ['ITG (default)', 'Note Roll'],
-            'Tap Explosions': ['Metalable', 'Glow (default)', 'ITG (default)']
-        },
-    'Metalable - Bejeweled Suite': {
-            'Arrow Center Animation': ['On - Default (default)'],
-            'Arrows': ['Metalable - Crystallis', 'Gemstones Crystallis Vibrant'],
-            'Hold Explosions': ['Metalable', 'Minimal (default)', 'Fire'],
-            'Holds': ['Metalable', 'VIP', 'Default (Steel) Crystallis'],
-            'Lifts': ['Metalable - Hollowed Spectrum (default)'],
-            'Mine Settings/Center Animation': ['On (default)'],
-            'Mine Settings/Rotation': ['On - ITG (default)'],
-            'Mine Settings/Size': ['Normal (default)'],
-            'Mines': ['VIP', 'Unquantized', 'Default'],
-            'Receptor Animation': ['On - Default (default)'],
-            'Receptors': ['Metalable - Crystallis', 'Default (Steel)'],
-            'Rolls': ['VIP', 'Default (Heliodor)'],
-            'Tap Explosions': ['Metalable', 'Spark', 'ITG']
-        },
-    'Metalable - Bejeweled 2 Suite': {
-            'Arrow Center Animation': ['On - Default (default)'],
-            'Arrows': ['Metalable - Crystallis', 'Gemstones 2 Crystallis Vibrant'],
-            'Hold Explosions': ['Metalable', 'Minimal (default)', 'RGB'],
-            'Holds': ['Metalable', 'VIP', 'Gold Crystallis'],
-            'Lifts': ['Metalable - Hollowed Spectrum (default)'],
-            'Mine Settings/Center Animation': ['On (default)'],
-            'Mine Settings/Rotation': ['On - ITG (default)'],
-            'Mine Settings/Size': ['Normal (default)'],
-            'Mines': ['VIP', 'Unquantized', 'Steel'],
-            'Receptor Animation': ['On - Default (default)'],
-            'Receptors': ['Metalable - Crystallis', 'Copper'],
-            'Rolls': ['VIP', 'Ice'],
-            'Tap Explosions': ['Metalable', 'Spark', 'ITG']
-        },
-    'Metalable - Highlighted Suite': {
-            'Arrow Center Animation': ['On - Default (default)'],
-            'Arrows': ['Metalable (default)', 'Lemma DDRainbow Vibrant Animated'],
-            'Hold Explosions': ['Metalable', 'Minimal (default)', 'Vapor'],
-            'Holds': ['Metalable', 'ITG (default)', 'Ocean'],
-            'Lifts': ['Metalable - Hollowed Spectrum (default)'],
-            'Mine Settings/Center Animation': ['On (default)'],
-            'Mine Settings/Rotation': ['On - ITG (default)'],
-            'Mine Settings/Size': ['Normal (default)'],
-            'Mines': ['ArrowVortex', 'Default P1', ''],
-            'Receptor Animation': ['On - Default (default)'],
-            'Receptors': ['Metalable - Traditional (default)', 'D A N K'],
-            'Rolls': ['ITG (default)', 'Fire Shadow'],
-            'Tap Explosions': ['Metalable', 'Spark', 'ITG']
-        },
-    'Metalable - Inversed Suite': {
-            'Arrow Center Animation': ['On - Default (default)'],
-            'Arrows': ['Metalable (default)', 'Lucid Addition'],
-            'Hold Explosions': ['Metalable', 'Minimal (default)', 'Falspawn'],
-            'Holds': ['Metalable', 'ITG (default)', 'Halloween Shadow'],
-            'Lifts': ['Metalable - Hollowed Spectrum (default)'],
-            'Mine Settings/Center Animation': ['On (default)'],
-            'Mine Settings/Rotation': ['On - ITG (default)'],
-            'Mine Settings/Size': ['Mini'],
-            'Mines': ['ITG (default)', 'Unquantized (default)', 'lateM'],
-            'Receptor Animation': ['On - Default (default)'],
-            'Receptors': ['Metalable - Traditional (default)', 'Purple'],
-            'Rolls': ['ITG (default)', 'DDR Hold Shadow'],
-            'Tap Explosions': ['Metalable', 'Glow (default)', 'ITG (default)']
-        },
-    'Metalable - Kindled Suite': {
-            'Arrow Center Animation': ['On - Default (default)'],
-            'Arrows': ['Metalable (default)','ITG TD Over-Vibrant'],
-            'Hold Explosions': ['Metalable','Glow','Gold'],
-            'Holds': ['Metalable','ITG (default)','Fire'],
-            'Lifts': ['Metalable - Hollowed Spectrum (default)'],
-            'Mine Settings/Center Animation': ['On (default)'],
-            'Mine Settings/Rotation': ['On - ITG (default)'],
-            'Mine Settings/Size': ['Mini'],
-            'Mines': ['ITG (default)','Unquantized (default)','Falspawn Vibrant'],
-            'Receptor Animation': ['On - Default (default)'],
-            'Receptors': ['Metalable - Traditional (default)','Halloween'],
-            'Rolls': ['ITG (default)','Note Roll Shadow'],
-            'Tap Explosions': ['Metalable','Spark','ITG']
-        },
-    'Metalable - Outlined Suite': {
-            "Arrow Center Animation": ["On - Default (default)"],
-            "Arrows": ["Metalable - Plain","Dev Toon"],
-            "Hold Explosions": ["Metalable","Minimal (default)","Red"],
-            "Holds": ["Metalable","Toon","Default"],
-            "Lifts": ["Metalable - Hollowed Spectrum (default)"],
+    'Note Suite': {
+            "Arrow Settings - Arrow Gradient/NotITG/Body": ["Normal Scroll (default)"],
+            "Arrow Settings - Arrow Gradient/NotITG/Center": ["Normal Scroll (default)"],
+            "Arrow Settings - Arrow Gradient/NotITG/Frame": ["Normal Scroll (default)"],
+            "Arrow Settings - Arrow Gradient/NotITG/Shine (RGB-Vivid-CAMidi-Only)": ["Normal Scroll (default)"],
+            "Arrow Settings - Freeze Arrows": ["On - Freeze Position 1"],
+            "Arrows": ["Yuisin ITG CA Alt"],
+            "Hold Explosions": ["Minimal (default)","DDR Hold"],
+            "Holds": ["ITGstyled (default)","DDR Hold (default)"],
+            "Mine Explosions": ["Shock Arrow","Default"],
             "Mine Settings/Center Animation": ["On (default)"],
-            "Mine Settings/Rotation": ["On - ITG (default)"],
-            "Mine Settings/Size": ["Normal (default)"],
-            "Mines": ["Toon","Purple"],
-            "Receptor Animation": ["On - Default (default)"],
-            "Receptors": ["Metalable - Frame","Blue"],
-            "Rolls": ["Toon","Default"],
-            "Tap Explosions": ["Metalable","Glow (default)","ITG (default)"]
+            "Mine Settings/Rotation": ["Off"],
+            "Mines": ["Shock Arrow","Default"],
+            "Receptor Pulse": ["On (default)"],
+            "Receptors": ["Center Glow (default)","Note Roll"],
+            "Rolls": ["ITGstyled (default)","Purple Shadow"],
+            "Tap Explosions": ["Spark (default)","ITG (default)"]
         },
-    'Metalable - Polished Suite': {
-            "Arrow Center Animation": ["On - Default (default)"],
-            "Arrows": ["Metalable (default)","Gemstones -REFLECTIVE- Vibrant"],
-            "Hold Explosions": ["Metalable","Glow","Fire"],
-            "Holds": ["Metalable","ITG (default)","Vapor"],
-            "Lifts": ["Metalable - Hollowed Spectrum (default)"],
+    'Rainbow Suite': {
+            "Arrow Settings - Arrow Gradient/NotITG/Body": ["Normal Scroll (default)"],
+            "Arrow Settings - Arrow Gradient/NotITG/Center": ["Normal Scroll (default)"],
+            "Arrow Settings - Arrow Gradient/NotITG/Frame": ["Normal Scroll (default)"],
+            "Arrow Settings - Arrow Gradient/NotITG/Shine (RGB-Vivid-CAMidi-Only)": ["Normal Scroll (default)"],
+            "Arrow Settings - Freeze Arrows": ["On - Freeze Position 1"],
+            "Arrows": ["Lemma DDRainbow CA"],
+            "Hold Explosions": ["Minimal (default)","RGB"],
+            "Holds": ["ITGstyled (default)","Orange"],
+            "Mine Explosions": ["Shock Arrow","RGB"],
             "Mine Settings/Center Animation": ["On (default)"],
-            "Mine Settings/Rotation": ["On - ITG (default)"],
-            "Mine Settings/Size": ["Mini"],
-            "Mines": ["ITG (default)","Unquantized (default)","Orange -REFLECTIVE- Vibrant"],
-            "Receptor Animation": ["On - Default (default)"],
-            "Receptors": ["Metalable - Frame","Christmas"],
-            "Rolls": ["ITG (default)","Falspawn Shadow"],
-            "Tap Explosions": ["Metalable","Spark","ITG"]
+            "Mine Settings/Rotation": ["Off"],
+            "Mines": ["Shock Arrow","RGB"],
+            "Receptor Pulse": ["On (default)"],
+            "Receptors": ["Classic","Halloween"],
+            "Rolls": ["ITGstyled (default)","Lemma Roll"],
+            "Tap Explosions": ["Minimal","ITG"]
         },
-    'Metalable - Reinforced Suite': {
-            "Arrow Center Animation": ["On - Default (default)"],
-            "Arrows": ["Metalable (default)","Bright Encore"],
-            "Hold Explosions": ["Metalable","Minimal (default)","Ocean"],
-            "Holds": ["Metalable","ITG (default)","Default Encore"],
-            "Lifts": ["Metalable - Hollowed Spectrum (default)"],
+    'Shadow Suite': {
+            "Arrow Settings - Arrow Gradient/NotITG/Body": ["Normal Scroll (default)"],
+            "Arrow Settings - Arrow Gradient/NotITG/Center": ["Normal Scroll (default)"],
+            "Arrow Settings - Arrow Gradient/NotITG/Frame": ["Normal Scroll (default)"],
+            "Arrow Settings - Arrow Gradient/NotITG/Shine (RGB-Vivid-CAMidi-Only)": ["Normal Scroll (default)"],
+            "Arrow Settings - Freeze Arrows": ["Off (default)"],
+            "Arrows": ["ITG Shadow"],
+            "Hold Explosions": ["Minimal (default)","Fire"],
+            "Holds": ["ITGstyled (default)","Lemma Roll Shadow"],
+            "Mine Explosions": ["Default (default)"],
             "Mine Settings/Center Animation": ["On (default)"],
-            "Mine Settings/Rotation": ["On - ITG (default)"],
-            "Mine Settings/Size": ["Normal (default)"],
-            "Mines": ["ITG (default)","Unquantized (default)","Default P1 -REFLECTIVE-"],
-            "Receptor Animation": ["On - Default (default)"],
-            "Receptors": ["Metalable - Traditional (default)","White"],
-            "Rolls": ["ITG (default)","Default Encore"],
-            "Tap Explosions": ["Metalable","Glow (default)","ITG (default)"]
+            "Mine Settings/Rotation": ["On (default)"],
+            "Mines": ["ITG (Default)","Fire"],
+            "Receptor Pulse": ["On (default)"],
+            "Receptors": ["Classic","Falspawn"],
+            "Rolls": ["ITGstyled (default)","Red Shadow"],
+            "Tap Explosions": ["Minimal","ITG"]
         },
-    'Metalable - Sellable Suite': {
-            "Arrow Center Animation": ["On - Default (default)"],
-            "Arrows": ["Metalable (default)","Bright -FLATSHINE- Gold"],
-            "Hold Explosions": ["Metalable","Glow","Yellow"],
-            "Holds": ["Metalable","ITG (default)","Gold Shadow"],
-            "Lifts": ["Metalable - Hollowed Spectrum (default)"],
+    'Universe Suite': {
+            "Arrow Settings - Arrow Gradient/NotITG/Body": ["Reverse Scroll"],
+            "Arrow Settings - Arrow Gradient/NotITG/Center": ["Normal Scroll (default)"],
+            "Arrow Settings - Arrow Gradient/NotITG/Frame": ["Normal Scroll (default)"],
+            "Arrow Settings - Arrow Gradient/NotITG/Shine (RGB-Vivid-CAMidi-Only)": ["Normal Scroll (default)"],
+            "Arrow Settings - Freeze Arrows": ["On - Freeze Position 2"],
+            "Arrows": ["DDR Order CA Alt"],
+            "Hold Explosions": ["Glow","Gold"],
+            "Holds": ["ITGstyled (default)","Blue"],
+            "Mine Explosions": ["Spiral Burst","Default"],
             "Mine Settings/Center Animation": ["On (default)"],
-            "Mine Settings/Rotation": ["On - ITG (default)"],
-            "Mine Settings/Size": ["Mini"],
-            "Mines": ["ITG (default)","Unquantized (default)","Default P1 -FLATSHINE- Gold"],
-            "Receptor Animation": ["On - Default (default)"],
-            "Receptors": ["Metalable - Traditional (default)","Gold"],
-            "Rolls": ["ITG (default)","Gold"],
-            "Tap Explosions": ["Metalable","Spark","Rainbowmatic"]
+            "Mine Settings/Rotation": ["On (default)"],
+            "Mines": ["Note","Falspawn"],
+            "Receptor Pulse": ["On (default)"],
+            "Receptors": ["Classic","Vapor"],
+            "Rolls": ["ITGstyled (default)","Fire"],
+            "Tap Explosions": ["Spark (default)","Nowhere"]
         }
 }
 
