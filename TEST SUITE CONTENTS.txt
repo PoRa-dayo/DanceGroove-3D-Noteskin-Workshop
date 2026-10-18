@@ -56,7 +56,7 @@ DEV SUITE:
 - Arrow Settings:
     + Arrow Gradient: All - Normal Scroll
     + Freeze Arrows: Off
-- Arrows: Dev Modernized
+- Arrows: Dev Modernized Alt
 - Hold Explosions: Minimal White
 - Holds: ITGstyled White
 - Mine Explosions: Default
