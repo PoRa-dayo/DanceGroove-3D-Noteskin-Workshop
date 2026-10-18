@@ -16,7 +16,40 @@ Welcome to the "Noteskin Workshop" for "DanceGroove", a DDR style noteskin with 
 
 *(Scroll down to the Overview section for an overview of the features in this workshop, as well as some previews)*
 
-# Installation
+
+# Installation and Customization (NEW)
+- You will be customizing and installing your noteskin via THE_PROGRAM, a helper program made to provide a helpful interface for this workshop.
+
+- Download this entire workshop by clicking on the green <> Code button at the top of the page, or visit [THE_PROGRAM release page](https://github.com/PoRa-dayo/Celable-Metalable-3D-Noteskin-Workshop/releases/tag/program) to download just enough resources to run THE_PROGRAM.
+<img width="694" height="100" alt="msedge_QAZEPmSTNp" src="https://github.com/user-attachments/assets/6d8d3888-75f2-4c9d-b7b0-755268e4663b" />
+
+- {WINDOWS USERS} Inside THE_PROGRAM folder, run METCELABLE_PROGRAM.exe. If Windows is protecting your PC, click "More info", and click "Run anyway".
+<img width="200" alt="lKYpUP4DSy" src="https://github.com/user-attachments/assets/c34ecc2b-f228-436e-9f98-3afdfcee923c" />
+<img width="200" alt="BMRA1BlZwe" src="https://github.com/user-attachments/assets/66431946-02a5-4345-9b08-89fad90c4dcd" />
+
+
+- {OTHERS} If you have Python (and the Pillow library) installed, inside THE_PROGRAM folder, you can also run DANCEGROOVE_PROGRAM.py.
+
+- All other instructions will be told to you directly via THE_PROGRAM, so <img height="52" alt="Relax and enjoy..." src="https://github.com/user-attachments/assets/9af591cb-949e-4a89-82f0-85da44b04d4e" />
+
+<img width="300" alt="DANCEGROOVE_PROGRAM_0gnlbsdp0f" src="https://github.com/user-attachments/assets/c2f8dfce-8275-41d1-8ea8-8d330ebbc4d6" />
+<img width="300" alt="DANCEGROOVE_PROGRAM_i3AHdG7wkG" src="https://github.com/user-attachments/assets/a8108e80-41e8-45fd-98ef-33dce789a01c" />
+
+
+- Inside the game, when you select a chart, right before the chart is played, when "PRESS [START] TO CHOOSE MODS"/"Press [START] again for options" shows up, do that to get the option to select your noteskin.
+
+https://github.com/user-attachments/assets/e6c9cb00-0f90-4e46-a68a-85fa3d004dd3
+
+
+*You can change your default settings for NotITG (including default noteskin) by going to the NotITG game folder, and open and edit Data/GamePrefs.ini. The default noteskin is called "scalable".*
+
+*You can change your default settings for Outfox (including default noteskin) in-game by going to the main menu, select Options -> User Experience -> Appearance Options.*
+
+*You can change your default settings for ITGmania (including default noteskin) in-game by going to the main menu, select Options -> System Options.*
+
+
+
+# Installation (LEGACY)
 - Download this entire workshop by clicking on the green <> Code button at the top of the page, or visit the [releases page](https://github.com/PoRa-dayo/DanceGroove-3D-Noteskin-Workshop/releases) to download individual folders of this workshop.
 <img width="685" height="100" alt="msedge_y7o1Gsljpu" src="https://github.com/user-attachments/assets/f33f58fb-af8a-4a48-85c7-f24d8de8200d" />
 
@@ -41,21 +74,7 @@ These contain the base default variant of the DanceGroove noteskin, which look l
 https://github.com/user-attachments/assets/7a18b9e2-cf9b-40bc-b1f3-c9a28309be96
 
 
-
-- Inside the game, when you select a chart, right before the chart is played, when "PRESS [START] TO CHOOSE MODS"/"Press [START] again for options" shows up, do that to get the option to select your noteskin.
-
-https://github.com/user-attachments/assets/e6c9cb00-0f90-4e46-a68a-85fa3d004dd3
-
-
-
-*You can change your default settings for NotITG (including default noteskin) by going to the NotITG game folder, and open and edit Data/GamePrefs.ini. The default noteskin is called "scalable".*
-
-*You can change your default settings for Outfox (including default noteskin) in-game by going to the main menu, select Options -> User Experience -> Appearance Options.*
-
-*You can change your default settings for ITGmania (including default noteskin) in-game by going to the main menu, select Options -> System Options.*
-
-
-# Customization
+# Customization (LEGACY)
 *You will only be changing the "dancegroove-custom-3d" folder.*
 
 - You can check the Previews folder for previews in an easily viewable and browsable format. Use it to figure out what noteskin variant you want.
