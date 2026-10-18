@@ -42,48 +42,35 @@ ret.Redir = function(sButton, sElement)
 		sElement = "Hold Head";
 	end
 
-	-- Redirects
     if sElement == "Tap Fake"
 	then
 		sElement = "Tap Note";
 	end
     
     if sButton == "Up" or sButton == "Right" or sButton == "Left" then
-        if string.find(sElement, "Hold Body Active") then
-            sElement = "Hold BodyDir Active";
-        end
-        if string.find(sElement, "Hold Body Inactive") then
-            sElement = "Hold BodyDir Inactive";
-        end
-        if string.find(sElement, "Roll Body Active") then
-            sElement = "Roll BodyDir Active";
-        end
-        if string.find(sElement, "Roll Body Inactive") then
-            sElement = "Roll BodyDir Inactive";
-        end
         if string.find(sElement, "Hold Topcap Active") then
-            sElement = "Hold TopCapDir Active";
+            sElement = "Hold TopCap Active";
         end
         if string.find(sElement, "Hold Bottomcap Active") then
-            sElement = "Hold BottomCapDir Active";
+            sElement = "Hold BottomCap Active";
         end
         if string.find(sElement, "Hold Topcap Inactive") then
-            sElement = "Hold TopCapDir Inactive";
+            sElement = "Hold TopCap Inactive";
         end
         if string.find(sElement, "Hold Bottomcap Inactive") then
-            sElement = "Hold BottomCapDir Inactive";
+            sElement = "Hold BottomCap Inactive";
         end
         if string.find(sElement, "Roll Topcap Active") then
-            sElement = "Roll TopCapDir Active";
+            sElement = "Roll TopCap Active";
         end
         if string.find(sElement, "Roll Bottomcap Active") then
-            sElement = "Roll BottomCapDir Active";
+            sElement = "Roll BottomCap Active";
         end
         if string.find(sElement, "Roll Topcap Inactive") then
-            sElement = "Roll TopCapDir Inactive";
+            sElement = "Roll TopCap Inactive";
         end
         if string.find(sElement, "Roll Bottomcap Inactive") then
-            sElement = "Roll BottomCapDir Inactive";
+            sElement = "Roll BottomCap Inactive";
         end
 	end
 
