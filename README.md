@@ -50,7 +50,7 @@ https://github.com/user-attachments/assets/e6c9cb00-0f90-4e46-a68a-85fa3d004dd3
 
 
 # Installation (LEGACY)
-- Download this entire workshop by clicking on the green <> Code button at the top of the page, or visit the [releases page](https://github.com/PoRa-dayo/DanceGroove-3D-Noteskin-Workshop/releases) to download individual folders of this workshop.
+- Download this entire workshop by clicking on the green <> Code button at the top of the page, or visit the [releases page](https://github.com/PoRa-dayo/DanceGroove-3D-Noteskin-Workshop/releases/tag/individuals) to download individual folders of this workshop.
 <img width="685" height="100" alt="msedge_y7o1Gsljpu" src="https://github.com/user-attachments/assets/f33f58fb-af8a-4a48-85c7-f24d8de8200d" />
 
 - Go into the "DanceGroove - BASE" folder, and select the folder of the game you want to install the noteskin in ("NotITG" or "Outfox-ITGmania-Etterna"). Install the noteskin by copying the "dancegroove-3d" and "dancegroove-custom-3d" folders placed inside the folder of the game you chose. Inside your NotITG/ITGmania/Etterna game folder, paste them in "NoteSkins"/"dance" (if the game is Outfox, it will be in "Appearance"/"NoteSkins"/"dance").
