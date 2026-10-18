@@ -1413,71 +1413,6 @@ def save_named_selection(name):
 
     return True
 
-def copy_non_directional_textures(working_mclb, category):
-    parts = [
-        ("Body", "Active"),
-        ("Body", "Inactive"),
-        ("BottomCap", "Active"),
-        ("BottomCap", "Inactive"),
-        ("TopCap", "Active"),
-        ("TopCap", "Inactive"),
-    ]
-
-    directions = ("Left", "Right", "Up")
-
-    category = category.removesuffix("s")
-
-    for part, state in parts:
-        source_name = f"Down {category} {part} {state}".casefold()
-        source_path = None
-
-        # Find the source Down PNG
-        for root, _, files in os.walk(working_mclb):
-            for filename in files:
-                if (
-                    filename.lower().endswith(".png")
-                    and source_name in filename.casefold()
-                ):
-                    source_path = os.path.join(root, filename)
-                    break
-
-            if source_path:
-                break
-
-        if not source_path:
-            print(f"Source image not found: {source_name}")
-            continue
-
-        # Find the other directional images
-        for direction in directions:
-            target_name = (
-                f"{direction} {category} {part}Dir {state}".casefold()
-            )
-            
-            target_path = None
-
-            for root, _, files in os.walk(working_mclb):
-                for filename in files:
-                    if (
-                        filename.lower().endswith(".png")
-                        and target_name in filename.casefold()
-                    ):
-                        target_path = os.path.join(root, filename)
-                        break
-
-                if target_path:
-                    break
-
-            # If no matching image exists, skip it
-            if not target_path:
-                print(f"No image that matches {target_name} exists")
-                continue
-
-            # Replace the target image's content with the source image
-            if os.path.normcase(source_path) != os.path.normcase(target_path):
-                shutil.copy2(source_path, target_path)
-                print(f"Replaced: {target_path}")
-
 def install_skin(CURRENT_PATH):
     if not noteskin_name_entry.get().strip():
         messagebox.showwarning(
@@ -1528,7 +1463,11 @@ def install_skin(CURRENT_PATH):
 
     # any item with [0] as Directional (e.g. PLAYER_SELECTIONS["Holds"][0] = "Directional") will be checked last.
     sorted_selections = sorted(
-        PLAYER_SELECTIONS.items(),
+        (
+            (category, selections)
+            for category, selections in PLAYER_SELECTIONS.items()
+            if not (category == "Lifts" and selected_game == "NotITG")
+        ),
         key=lambda item: item[1][0] == "Directional"
     )
 
@@ -1556,13 +1495,6 @@ def install_skin(CURRENT_PATH):
                     working_mclb,
                     dirs_exist_ok=True
                 )
-
-            if (
-                directionTypeMismatch and
-                PLAYER_SELECTIONS[category] and
-                PLAYER_SELECTIONS[category][0] == "ITGstyled (default)"
-            ):
-                copy_non_directional_textures(working_mclb, category)
 
         # Destination: CURRENT_PATH/dancegroove-custom-3d or user's chosen name
         destination = os.path.join(CURRENT_PATH, noteskin_name_entry.get())
