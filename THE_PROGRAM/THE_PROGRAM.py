@@ -1580,7 +1580,7 @@ def install_skin(CURRENT_PATH):
     if selected_game == "Outfox-ITGmania-Etterna":
         messagebox.showinfo("Notice", "Noteskin installed. Reload theme and textures (F2 or F3+F6+6) in your GAME to apply the changes.")
     else:
-        messagebox.showinfo("Notice", "Noteskin installed. Restart the GAME to apply the changes.")
+        messagebox.showinfo("Notice", "Noteskin installed. Restart the GAME, or open the in-game console (Ctrl+F9 by default) and type GAMESTATE:ApplyGameCommand('reloadtheme'), to apply the changes.")
     return True
 
 
@@ -1729,6 +1729,9 @@ def on_mousewheel(event):
         if widget in (page2_canvas, page3_canvas):
             break
 
+        if not isinstance(widget, tk.Misc):
+            return "break"
+
         parent = widget.winfo_parent()
         if not parent:
             return "break"
@@ -1865,7 +1868,7 @@ TEST_SUITE_CONFIG = {
             "Arrow Settings - Arrow Gradient/NotITG/Frame": ["Normal Scroll (default)"],
             "Arrow Settings - Arrow Gradient/NotITG/Shine (RGB-Vivid-CAMidi-Only)": ["Normal Scroll (default)"],
             "Arrow Settings - Freeze Arrows": ["Off (default)"],
-            "Arrows": ["Dev Modernized"],
+            "Arrows": ["Dev Modernized Alt"],
             "Hold Explosions": ["Minimal (default)","White (default)"],
             "Holds": ["ITGstyled (default)","White"],
             "Mine Explosions": ["Default (default)"],
