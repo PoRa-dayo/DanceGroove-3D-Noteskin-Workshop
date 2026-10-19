@@ -21,7 +21,8 @@ Welcome to the "Noteskin Workshop" for "DanceGroove", a DDR style noteskin with 
 - You will be customizing and installing your noteskin via THE_PROGRAM, a helper program made to provide a helpful interface for this workshop.
 
 - Download this entire workshop by clicking on the green <> Code button at the top of the page, or visit [THE_PROGRAM release page](https://github.com/PoRa-dayo/DanceGroove-3D-Noteskin-Workshop/releases/tag/program) to download just enough resources to run THE_PROGRAM.
-<img width="694" height="100" alt="msedge_QAZEPmSTNp" src="https://github.com/user-attachments/assets/6d8d3888-75f2-4c9d-b7b0-755268e4663b" />
+<img width="685" height="100" alt="msedge_y7o1Gsljpu" src="https://github.com/user-attachments/assets/f33f58fb-af8a-4a48-85c7-f24d8de8200d" />
+
 
 - {WINDOWS USERS} Inside THE_PROGRAM folder, run METCELABLE_PROGRAM.exe. If Windows is protecting your PC, click "More info", and click "Run anyway".
 <img width="200" alt="lKYpUP4DSy" src="https://github.com/user-attachments/assets/c34ecc2b-f228-436e-9f98-3afdfcee923c" />
