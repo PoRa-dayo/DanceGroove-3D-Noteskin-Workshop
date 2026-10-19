@@ -60,7 +60,7 @@ Compared to HURG's original DanceGroove workshop, this one will also offer extra
 
 ## Arrows
 There are a lot of arrow customization options (over 140!) including color sets for ITG, DDR note, vivid, RGB, and other color schemes seen on other various noteskins, which includes several variations for each color set. By default the skin uses the "ITG" arrow set.
-In the "Previews" folder, there are animated GIF previews of every arrow option, except the unanimated ones which are presented with static PNG images. Every arrow preview image has labels for each quantization. As an example, here is the preview image for some arrow sets (These variants are: ITG CA, Lemma DDRainbow Shadow, Lucid Cel Basic, Note 2 CA Midi, Lucid Dark, Dev Modernized)
+In the "Previews" folder, there are animated GIF previews of every arrow option, except the unanimated ones which are presented with static PNG images. Every arrow preview image has labels for each quantization. As an example, here is the preview image for some arrow sets (These variants are: ITG CA, Lemma DDRainbow Shadow, Lucid Cel Basic, Note 2 CA Midi, Lucid Dark, Dev Modernized Alt)
 
 <img width="600" alt="ITG CA" src="https://github.com/user-attachments/assets/065b8568-9a4e-4f9d-bb89-3243d07a387e" />
 <img width="600" alt="Lemma DDRainbow Shadow" src="https://github.com/user-attachments/assets/6e3ed5eb-5629-484d-87ea-cf622b04439f" />
