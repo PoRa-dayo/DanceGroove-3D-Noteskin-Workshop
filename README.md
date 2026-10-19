@@ -49,6 +49,9 @@ https://github.com/user-attachments/assets/e6c9cb00-0f90-4e46-a68a-85fa3d004dd3
 *You can change your default settings for ITGmania (including default noteskin) in-game by going to the main menu, select Options -> System Options.*
 
 
+# Installation and Customization (LEGACY)
+*For those who are unable to use THE_PROGRAM. View it [here](https://github.com/PoRa-dayo/DanceGroove-3D-Noteskin-Workshop/blob/main/README_LEGACY.md).*
+
 
 # Overview
 In case it's not obvious enough from the name, this noteskin is not meant to accurately recreate the original DDR noteskins (Go check out Peter's or Schneider's or MadkaT's DDR noteskins if you want something close to the original for non-mods play). DanceGroove arrow's shape is more similar to SM3.9's default stock noteskin, holds also look slightly different, and shock arrows do not connect with eachother nor will they shock your entire playfield. Most DanceGroove arrow variants also use a double gradient, so they will appear more animated even compared to ITG stock noteskins. However, there are several variants that accurately recreate the color scheme and gradient from original DDR noteskins (the "CA Alt" variants), if you want those instead.
